@@ -20,7 +20,8 @@ void MainWindow::on_pushButton_clicked()
     QString text = ui->set_command->text();
     ui->terminal->append(text);
     ui->set_command->clear();
-    GParser::Debug(text);
+    GParser gparser;
+    gparser.Debug(text);
 }
 
 

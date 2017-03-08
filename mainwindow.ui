@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>847</width>
-    <height>566</height>
+    <height>562</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,9 +17,9 @@
    <widget class="QLineEdit" name="set_command">
     <property name="geometry">
      <rect>
-      <x>40</x>
+      <x>30</x>
       <y>450</y>
-      <width>201</width>
+      <width>211</width>
       <height>31</height>
      </rect>
     </property>
@@ -50,7 +50,7 @@
     <property name="geometry">
      <rect>
       <x>720</x>
-      <y>240</y>
+      <y>280</y>
       <width>111</width>
       <height>41</height>
      </rect>
@@ -79,10 +79,10 @@
    <widget class="QPushButton" name="connect">
     <property name="geometry">
      <rect>
-      <x>660</x>
-      <y>20</y>
-      <width>111</width>
-      <height>31</height>
+      <x>740</x>
+      <y>10</y>
+      <width>101</width>
+      <height>41</height>
      </rect>
     </property>
     <property name="text">
@@ -95,10 +95,10 @@
     </property>
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>230</y>
-      <width>301</width>
-      <height>201</height>
+      <x>30</x>
+      <y>270</y>
+      <width>321</width>
+      <height>171</height>
      </rect>
     </property>
     <property name="readOnly">
@@ -115,10 +115,20 @@ p, li { white-space: pre-wrap; }
    <widget class="QTreeView" name="treeView">
     <property name="geometry">
      <rect>
-      <x>40</x>
+      <x>30</x>
+      <y>71</y>
+      <width>321</width>
+      <height>191</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="comboBox">
+    <property name="geometry">
+     <rect>
+      <x>510</x>
       <y>20</y>
-      <width>256</width>
-      <height>192</height>
+      <width>221</width>
+      <height>31</height>
      </rect>
     </property>
    </widget>

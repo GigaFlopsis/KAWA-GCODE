@@ -14,6 +14,7 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QComboBox>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QMainWindow>
@@ -38,6 +39,7 @@ public:
     QPushButton *connect;
     QTextEdit *terminal;
     QTreeView *treeView;
+    QComboBox *comboBox;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -46,12 +48,12 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(847, 566);
+        MainWindow->resize(847, 562);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         set_command = new QLineEdit(centralWidget);
         set_command->setObjectName(QStringLiteral("set_command"));
-        set_command->setGeometry(QRect(40, 450, 201, 31));
+        set_command->setGeometry(QRect(30, 450, 211, 31));
         set_command->setAutoFillBackground(false);
         set_command->setLocale(QLocale(QLocale::English, QLocale::UnitedStates));
         pushButton = new QPushButton(centralWidget);
@@ -59,7 +61,7 @@ public:
         pushButton->setGeometry(QRect(240, 450, 111, 31));
         SPEED = new QSpinBox(centralWidget);
         SPEED->setObjectName(QStringLiteral("SPEED"));
-        SPEED->setGeometry(QRect(720, 240, 111, 41));
+        SPEED->setGeometry(QRect(720, 280, 111, 41));
         SPEED->setMinimumSize(QSize(0, 0));
         QFont font;
         font.setPointSize(12);
@@ -71,15 +73,18 @@ public:
         SPEED->setSingleStep(10);
         connect = new QPushButton(centralWidget);
         connect->setObjectName(QStringLiteral("connect"));
-        connect->setGeometry(QRect(660, 20, 111, 31));
+        connect->setGeometry(QRect(740, 10, 101, 41));
         terminal = new QTextEdit(centralWidget);
         terminal->setObjectName(QStringLiteral("terminal"));
         terminal->setEnabled(true);
-        terminal->setGeometry(QRect(40, 230, 301, 201));
+        terminal->setGeometry(QRect(30, 270, 321, 171));
         terminal->setReadOnly(true);
         treeView = new QTreeView(centralWidget);
         treeView->setObjectName(QStringLiteral("treeView"));
-        treeView->setGeometry(QRect(40, 20, 256, 192));
+        treeView->setGeometry(QRect(30, 71, 321, 191));
+        comboBox = new QComboBox(centralWidget);
+        comboBox->setObjectName(QStringLiteral("comboBox"));
+        comboBox->setGeometry(QRect(510, 20, 221, 31));
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));

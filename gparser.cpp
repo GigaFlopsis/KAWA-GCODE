@@ -18,15 +18,6 @@ QStringList list;
 
 double* param = new double[4];
 
-struct paramPoint{
-    double x;
-    double y;
-    double z;
-    int speed;
-    int g;
-    double i;
-    double j;
-};
 
 void GParser::Debug(QString &text)
 {
@@ -39,7 +30,7 @@ void GParser::Debug(QString &text)
 
     list = text.split(" ");
     //qDebug() << list;
-   paramPoint point =  ParseParam(list);//, &param);
+   paramPoint point =  ParseParam(list);
 qDebug() << "X: " << point.x << "Y: " << point.y << "Z: " << point.z;
 }
 
