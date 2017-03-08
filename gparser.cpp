@@ -8,17 +8,17 @@
  * */
 #include "gparser.h"
 #include "qdebug.h"
+#include <QFile>
+#include <QTextStream>
 
-GParser::GParser()
-{
-
-}
 
 QStringList list;
 
 double* param = new double[4];
+GParser::GParser()
+{
 
-
+}
 void GParser::Debug(QString &text)
 {
     char* ch = text.toLatin1().data();
@@ -76,5 +76,6 @@ paramPoint GParser::ParseParam(QStringList line) //,double &param)
       }
     }
     return point;
-
 }
+
+
