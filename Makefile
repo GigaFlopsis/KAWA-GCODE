@@ -222,8 +222,10 @@ Makefile: KAWA-GCODE.pro S:/Soft/Qt5.8.0/5.8/mingw53_32/mkspecs/win32-g++/qmake.
 		S:/Soft/Qt5.8.0/5.8/mingw53_32/mkspecs/features/lex.prf \
 		KAWA-GCODE.pro \
 		S:/Soft/Qt5.8.0/5.8/mingw53_32/lib/qtmaind.prl \
+		S:/Soft/Qt5.8.0/5.8/mingw53_32/lib/Qt5PrintSupport.prl \
 		S:/Soft/Qt5.8.0/5.8/mingw53_32/lib/Qt5Widgets.prl \
 		S:/Soft/Qt5.8.0/5.8/mingw53_32/lib/Qt5Gui.prl \
+		S:/Soft/Qt5.8.0/5.8/mingw53_32/lib/Qt5SerialPort.prl \
 		S:/Soft/Qt5.8.0/5.8/mingw53_32/lib/Qt5Core.prl
 	$(QMAKE) -o Makefile KAWA-GCODE.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug"
 S:/Soft/Qt5.8.0/5.8/mingw53_32/mkspecs/features/spec_pre.prf:
@@ -389,8 +391,10 @@ S:/Soft/Qt5.8.0/5.8/mingw53_32/mkspecs/features/yacc.prf:
 S:/Soft/Qt5.8.0/5.8/mingw53_32/mkspecs/features/lex.prf:
 KAWA-GCODE.pro:
 S:/Soft/Qt5.8.0/5.8/mingw53_32/lib/qtmaind.prl:
+S:/Soft/Qt5.8.0/5.8/mingw53_32/lib/Qt5PrintSupport.prl:
 S:/Soft/Qt5.8.0/5.8/mingw53_32/lib/Qt5Widgets.prl:
 S:/Soft/Qt5.8.0/5.8/mingw53_32/lib/Qt5Gui.prl:
+S:/Soft/Qt5.8.0/5.8/mingw53_32/lib/Qt5SerialPort.prl:
 S:/Soft/Qt5.8.0/5.8/mingw53_32/lib/Qt5Core.prl:
 qmake: FORCE
 	@$(QMAKE) -o Makefile KAWA-GCODE.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug"

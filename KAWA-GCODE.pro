@@ -5,8 +5,9 @@
 #-------------------------------------------------
 
 QT       += core gui
+QT      += serialport
 
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets printsupport
 
 TARGET = KAWA-GCODE
 TEMPLATE = app
@@ -14,9 +15,11 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    gparser.cpp
+    gparser.cpp \
+    port.cpp
 
 HEADERS  += mainwindow.h \
-    gparser.h
+    gparser.h \
+    port.h
 
 FORMS    += mainwindow.ui

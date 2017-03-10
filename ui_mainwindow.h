@@ -22,6 +22,7 @@
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
+#include <QtWidgets/QPlainTextEdit>
 #include <QtWidgets/QProgressBar>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSpacerItem>
@@ -74,7 +75,7 @@ public:
     QTextEdit *terminal;
     QHBoxLayout *horizontalLayout_3;
     QLineEdit *set_command;
-    QPushButton *pushButton;
+    QPushButton *sendToTerminalButton;
     QSplitter *splitter;
     QPushButton *pushButton_11;
     QPushButton *pushButton_9;
@@ -96,8 +97,9 @@ public:
     QSplitter *splitter_4;
     QComboBox *setCOM;
     QSplitter *splitter_3;
-    QPushButton *Scan;
-    QPushButton *connect;
+    QPushButton *scanCom;
+    QPushButton *connectButton;
+    QPlainTextEdit *currentPos;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
     QMenuBar *menuBar;
@@ -110,6 +112,7 @@ public:
         MainWindow->setEnabled(true);
         MainWindow->resize(800, 600);
         MainWindow->setMinimumSize(QSize(800, 600));
+        MainWindow->setMaximumSize(QSize(800, 600));
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         pushButton_8 = new QPushButton(centralWidget);
@@ -201,7 +204,7 @@ public:
         pushButton_24->setMinimumSize(QSize(27, 23));
         layoutWidget = new QWidget(centralWidget);
         layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
-        layoutWidget->setGeometry(QRect(10, 10, 430, 491));
+        layoutWidget->setGeometry(QRect(10, 10, 430, 501));
         verticalLayout_2 = new QVBoxLayout(layoutWidget);
         verticalLayout_2->setSpacing(6);
         verticalLayout_2->setContentsMargins(11, 11, 11, 11);
@@ -304,10 +307,10 @@ public:
 
         horizontalLayout_3->addWidget(set_command);
 
-        pushButton = new QPushButton(layoutWidget);
-        pushButton->setObjectName(QStringLiteral("pushButton"));
+        sendToTerminalButton = new QPushButton(layoutWidget);
+        sendToTerminalButton->setObjectName(QStringLiteral("sendToTerminalButton"));
 
-        horizontalLayout_3->addWidget(pushButton);
+        horizontalLayout_3->addWidget(sendToTerminalButton);
 
 
         verticalLayout_2->addLayout(horizontalLayout_3);
@@ -366,7 +369,7 @@ public:
         pushButton_23->setMinimumSize(QSize(27, 23));
         splitter_6 = new QSplitter(centralWidget);
         splitter_6->setObjectName(QStringLiteral("splitter_6"));
-        splitter_6->setGeometry(QRect(460, 240, 321, 31));
+        splitter_6->setGeometry(QRect(460, 260, 321, 31));
         splitter_6->setOrientation(Qt::Horizontal);
         splitter_2 = new QSplitter(splitter_6);
         splitter_2->setObjectName(QStringLiteral("splitter_2"));
@@ -413,13 +416,17 @@ public:
         splitter_3 = new QSplitter(splitter_4);
         splitter_3->setObjectName(QStringLiteral("splitter_3"));
         splitter_3->setOrientation(Qt::Horizontal);
-        Scan = new QPushButton(splitter_3);
-        Scan->setObjectName(QStringLiteral("Scan"));
-        splitter_3->addWidget(Scan);
-        connect = new QPushButton(splitter_3);
-        connect->setObjectName(QStringLiteral("connect"));
-        splitter_3->addWidget(connect);
+        scanCom = new QPushButton(splitter_3);
+        scanCom->setObjectName(QStringLiteral("scanCom"));
+        splitter_3->addWidget(scanCom);
+        connectButton = new QPushButton(splitter_3);
+        connectButton->setObjectName(QStringLiteral("connectButton"));
+        splitter_3->addWidget(connectButton);
         splitter_4->addWidget(splitter_3);
+        currentPos = new QPlainTextEdit(centralWidget);
+        currentPos->setObjectName(QStringLiteral("currentPos"));
+        currentPos->setGeometry(QRect(460, 70, 321, 81));
+        currentPos->setReadOnly(true);
         MainWindow->setCentralWidget(centralWidget);
         splitter->raise();
         label_6->raise();
@@ -446,6 +453,7 @@ public:
         pushButton_25->raise();
         label_7->raise();
         pushButton_24->raise();
+        currentPos->raise();
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
         MainWindow->addToolBar(Qt::TopToolBarArea, mainToolBar);
@@ -505,7 +513,7 @@ public:
 "</style></head><body style=\" font-family:'MS Shell Dlg 2'; font-size:8pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:7.8pt;\"><br /></p></body></html>", Q_NULLPTR));
         set_command->setText(QString());
-        pushButton->setText(QApplication::translate("MainWindow", "SEND", Q_NULLPTR));
+        sendToTerminalButton->setText(QApplication::translate("MainWindow", "SEND", Q_NULLPTR));
         pushButton_11->setText(QApplication::translate("MainWindow", "X -", Q_NULLPTR));
         pushButton_9->setText(QApplication::translate("MainWindow", "Y -", Q_NULLPTR));
         pushButton_10->setText(QApplication::translate("MainWindow", "X +", Q_NULLPTR));
@@ -519,13 +527,8 @@ public:
         reset->setText(QApplication::translate("MainWindow", "reset", Q_NULLPTR));
         resetError->setText(QApplication::translate("MainWindow", "error reset", Q_NULLPTR));
         label_9->setText(QApplication::translate("MainWindow", "Speed:", Q_NULLPTR));
-        setCOM->clear();
-        setCOM->insertItems(0, QStringList()
-         << QApplication::translate("MainWindow", "\320\235\320\276\320\262\321\213\320\271 \321\215\320\273\320\265\320\274\320\265\320\275\321\202", Q_NULLPTR)
-         << QApplication::translate("MainWindow", "\320\235\320\276\320\262\321\213\320\271 \321\215\320\273\320\265\320\274\320\265\320\275\321\202", Q_NULLPTR)
-        );
-        Scan->setText(QApplication::translate("MainWindow", "Scan", Q_NULLPTR));
-        connect->setText(QApplication::translate("MainWindow", "CONNECT", Q_NULLPTR));
+        scanCom->setText(QApplication::translate("MainWindow", "Scan", Q_NULLPTR));
+        connectButton->setText(QApplication::translate("MainWindow", "Connect", Q_NULLPTR));
         menuKAWA_GCODE->setTitle(QApplication::translate("MainWindow", "KAWA-GCODE", Q_NULLPTR));
     } // retranslateUi
 

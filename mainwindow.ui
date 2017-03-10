@@ -19,6 +19,12 @@
     <height>600</height>
    </size>
   </property>
+  <property name="maximumSize">
+   <size>
+    <width>800</width>
+    <height>600</height>
+   </size>
+  </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
@@ -388,7 +394,7 @@
       <x>10</x>
       <y>10</y>
       <width>430</width>
-      <height>491</height>
+      <height>501</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -542,7 +548,7 @@ p, li { white-space: pre-wrap; }
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="pushButton">
+        <widget class="QPushButton" name="sendToTerminalButton">
          <property name="text">
           <string>SEND</string>
          </property>
@@ -747,7 +753,7 @@ p, li { white-space: pre-wrap; }
     <property name="geometry">
      <rect>
       <x>460</x>
-      <y>240</y>
+      <y>260</y>
       <width>321</width>
       <height>31</height>
      </rect>
@@ -835,32 +841,35 @@ p, li { white-space: pre-wrap; }
        <height>0</height>
       </size>
      </property>
-     <item>
-      <property name="text">
-       <string>Новый элемент</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Новый элемент</string>
-      </property>
-     </item>
     </widget>
     <widget class="QSplitter" name="splitter_3">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
      </property>
-     <widget class="QPushButton" name="Scan">
+     <widget class="QPushButton" name="scanCom">
       <property name="text">
        <string>Scan</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="connect">
+     <widget class="QPushButton" name="connectButton">
       <property name="text">
-       <string>CONNECT</string>
+       <string>Connect</string>
       </property>
      </widget>
     </widget>
+   </widget>
+   <widget class="QPlainTextEdit" name="currentPos">
+    <property name="geometry">
+     <rect>
+      <x>460</x>
+      <y>70</y>
+      <width>321</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
+    </property>
    </widget>
    <zorder>splitter</zorder>
    <zorder>label_6</zorder>
@@ -887,6 +896,7 @@ p, li { white-space: pre-wrap; }
    <zorder>pushButton_25</zorder>
    <zorder>label_7</zorder>
    <zorder>pushButton_24</zorder>
+   <zorder>currentPos</zorder>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
