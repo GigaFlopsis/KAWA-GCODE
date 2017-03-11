@@ -44,6 +44,7 @@ public slots:
     void ParseCmd(const QString &arg1);
     void ParsingFile(QStringList data);
     void ClearList();
+    void SetList();
 private:
     paramPoint ParseParam(QStringList list); //set parsing line file
     void ChangeEmpyParam(paramPoint &targetPos, paramPoint currentPos);

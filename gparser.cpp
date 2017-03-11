@@ -126,11 +126,10 @@ void GParser::ParsingFile(QStringList data)
 
        posList.append(currentPoint);
      }
-    emit filePos(QList<paramPoint> posList);
+
 k = 0;
 qDebug() << "list size" << posList.length();
 }
-
 
 void GParser::ChangeEmpyParam(paramPoint &targerPos,paramPoint prevPos)
 {
@@ -150,4 +149,9 @@ void GParser::ChangeEmpyParam(paramPoint &targerPos,paramPoint prevPos)
      targerPos.j = prevPos.j;
 }
 
-
+void GParser::SetList()
+{
+   qDebug() << "setList";
+   if(posList.length() != 0)
+   emit filePos(posList);
+}

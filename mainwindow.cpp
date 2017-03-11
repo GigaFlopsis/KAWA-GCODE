@@ -13,6 +13,7 @@
 #include <QDebug>
 #include <QFileDialog>
 #include <gparser.h>
+#include "programrun.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -21,17 +22,35 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
 
     GParser *gparse = new GParser;
-    QThread *thread_New = new QThread;//Create new thead for COM port
     Port *PortNew = new Port();//creat object class Port
-    PortNew->moveToThread(thread_New);//moved class to tread
-    PortNew->thisPort.moveToThread(thread_New);//moved port to tread
-    connect(thread_New, SIGNAL(started()), PortNew, SLOT(process_Port()));//Переназначения метода run
+    ProgramRun *RunMove = new ProgramRun();
+    QThread *thread_Port = new QThread;//Create new thead for COM port
+    QThread *thread_Move = new QThread;//Create new thead for Move
+
+    PortNew->moveToThread(thread_Port);//moved class to tread
+//    PortNew->thisPort.moveToThread(thread_Port);//moved port to tread
+//    RunMove->moveToThread(thread_Move);
+
+    connect(ui->pushButton_play,SIGNAL(pressed()),gparse,SLOT(SetList()));
+    connect(ui->pushButton_pause,SIGNAL(cmdComplite()),RunMove,SLOT(StopProgram()));
+
+    connect(gparse,SIGNAL(filePos(QList<paramPoint>)),RunMove,SLOT(SetProgram(QList<paramPoint>)),Qt::DirectConnection);
+    connect(gparse,SIGNAL(cmdComplite()),RunMove,SLOT(PlayMove(true)),Qt::DirectConnection);
+    connect(RunMove,SIGNAL(FinishMove()),gparse,SIGNAL(filePos(QList<paramPoint>)));
+    connect(RunMove,SIGNAL(Move(QByteArray)),PortNew,SLOT(WriteToPort(QByteArray)));
+    connect(this, SIGNAL(writeData(QByteArray)), PortNew, SLOT(WriteToPort(QByteArray))); //move
+    connect(this, SIGNAL(writeData(QByteArray)), this, SLOT(printToTerminal(QString)); //move
+
+
+
+
+    connect(thread_Port, SIGNAL(started()), PortNew, SLOT(process_Port()));//Переназначения метода run
     connect(this,SIGNAL(savesettings(QString,int,int,int,int,int)),PortNew,SLOT(Write_Settings_Port(QString,int,int,int,int,int)));//set param port
-    connect(PortNew, SIGNAL(finished_Port()), thread_New, SLOT(quit()));//Переназначение метода выход
-    connect(thread_New, SIGNAL(finished()), PortNew, SLOT(deleteLater()));//delite tread
-    connect(PortNew, SIGNAL(finished_Port()), thread_New, SLOT(deleteLater()));//Удалить к чертям поток
+    connect(PortNew, SIGNAL(finished_Port()), thread_Port, SLOT(quit()));//Переназначение метода выход
+    connect(thread_Port, SIGNAL(finished()), PortNew, SLOT(deleteLater()));//delite tread
+    connect(PortNew, SIGNAL(finished_Port()), thread_Port, SLOT(deleteLater()));//Удалить к чертям поток
     connect(PortNew, SIGNAL(error_(QString)), this, SLOT(printToTerminal(QString)));//Log errors
-    connect(this, SIGNAL(writeData(QByteArray)), PortNew, SLOT(WriteToPort(QByteArray))); //sent to port
+
     connect(this, SIGNAL(Connect()),PortNew,SLOT(ConnectPort())); //connect to port
     connect(this, SIGNAL(Disconect()),PortNew,SLOT(DisconnectPort())); //disconnect
     connect(PortNew, SIGNAL(outPort(QString)),this,SLOT(printToTerminal(QString))); //print to terminal
@@ -40,8 +59,8 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(this, SIGNAL(outPort(QString)),gparse,SLOT(ParseCmd(QString))); //print to terminal
     connect(this, SIGNAL(FileData(QStringList)),gparse,SLOT(ParsingFile(QStringList))); //send file to parsing
 
-    thread_New->start();
-
+    thread_Port->start();
+  //  thread_Move->start();
 }
 
 MainWindow::~MainWindow()

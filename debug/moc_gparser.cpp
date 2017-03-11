@@ -9,6 +9,7 @@
 #include "../gparser.h"
 #include <QtCore/qbytearray.h>
 #include <QtCore/qmetatype.h>
+#include <QtCore/QList>
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'gparser.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 67
@@ -21,8 +22,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_GParser_t {
-    QByteArrayData data[12];
-    char stringdata0[104];
+    QByteArrayData data[16];
+    char stringdata0[146];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -38,16 +39,21 @@ QT_MOC_LITERAL(3, 21, 8), // "cmdError"
 QT_MOC_LITERAL(4, 30, 9), // "cmdFinish"
 QT_MOC_LITERAL(5, 40, 11), // "cmdResponse"
 QT_MOC_LITERAL(6, 52, 10), // "cmdComment"
-QT_MOC_LITERAL(7, 63, 8), // "ParseCmd"
-QT_MOC_LITERAL(8, 72, 4), // "arg1"
-QT_MOC_LITERAL(9, 77, 11), // "ParsingFile"
-QT_MOC_LITERAL(10, 89, 4), // "data"
-QT_MOC_LITERAL(11, 94, 9) // "ClearList"
+QT_MOC_LITERAL(7, 63, 7), // "filePos"
+QT_MOC_LITERAL(8, 71, 17), // "QList<paramPoint>"
+QT_MOC_LITERAL(9, 89, 7), // "posList"
+QT_MOC_LITERAL(10, 97, 8), // "ParseCmd"
+QT_MOC_LITERAL(11, 106, 4), // "arg1"
+QT_MOC_LITERAL(12, 111, 11), // "ParsingFile"
+QT_MOC_LITERAL(13, 123, 4), // "data"
+QT_MOC_LITERAL(14, 128, 9), // "ClearList"
+QT_MOC_LITERAL(15, 138, 7) // "SetList"
 
     },
     "GParser\0cmdComplite\0\0cmdError\0cmdFinish\0"
-    "cmdResponse\0cmdComment\0ParseCmd\0arg1\0"
-    "ParsingFile\0data\0ClearList"
+    "cmdResponse\0cmdComment\0filePos\0"
+    "QList<paramPoint>\0posList\0ParseCmd\0"
+    "arg1\0ParsingFile\0data\0ClearList\0SetList"
 };
 #undef QT_MOC_LITERAL
 
@@ -57,24 +63,26 @@ static const uint qt_meta_data_GParser[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-       8,   14, // methods
+      10,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
-       5,       // signalCount
+       6,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    0,   54,    2, 0x06 /* Public */,
-       3,    0,   55,    2, 0x06 /* Public */,
-       4,    0,   56,    2, 0x06 /* Public */,
-       5,    0,   57,    2, 0x06 /* Public */,
-       6,    0,   58,    2, 0x06 /* Public */,
+       1,    0,   64,    2, 0x06 /* Public */,
+       3,    0,   65,    2, 0x06 /* Public */,
+       4,    0,   66,    2, 0x06 /* Public */,
+       5,    0,   67,    2, 0x06 /* Public */,
+       6,    0,   68,    2, 0x06 /* Public */,
+       7,    1,   69,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-       7,    1,   59,    2, 0x0a /* Public */,
-       9,    1,   62,    2, 0x0a /* Public */,
-      11,    0,   65,    2, 0x0a /* Public */,
+      10,    1,   72,    2, 0x0a /* Public */,
+      12,    1,   75,    2, 0x0a /* Public */,
+      14,    0,   78,    2, 0x0a /* Public */,
+      15,    0,   79,    2, 0x0a /* Public */,
 
  // signals: parameters
     QMetaType::Int,
@@ -82,10 +90,12 @@ static const uint qt_meta_data_GParser[] = {
     QMetaType::Int,
     QMetaType::Int,
     QMetaType::Int,
+    QMetaType::Int, 0x80000000 | 8,    9,
 
  // slots: parameters
-    QMetaType::Void, QMetaType::QString,    8,
-    QMetaType::Void, QMetaType::QStringList,   10,
+    QMetaType::Void, QMetaType::QString,   11,
+    QMetaType::Void, QMetaType::QStringList,   13,
+    QMetaType::Void,
     QMetaType::Void,
 
        0        // eod
@@ -107,9 +117,12 @@ void GParser::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, voi
             if (_a[0]) *reinterpret_cast< int*>(_a[0]) = _r; }  break;
         case 4: { int _r = _t->cmdComment();
             if (_a[0]) *reinterpret_cast< int*>(_a[0]) = _r; }  break;
-        case 5: _t->ParseCmd((*reinterpret_cast< const QString(*)>(_a[1]))); break;
-        case 6: _t->ParsingFile((*reinterpret_cast< QStringList(*)>(_a[1]))); break;
-        case 7: _t->ClearList(); break;
+        case 5: { int _r = _t->filePos((*reinterpret_cast< QList<paramPoint>(*)>(_a[1])));
+            if (_a[0]) *reinterpret_cast< int*>(_a[0]) = _r; }  break;
+        case 6: _t->ParseCmd((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 7: _t->ParsingFile((*reinterpret_cast< QStringList(*)>(_a[1]))); break;
+        case 8: _t->ClearList(); break;
+        case 9: _t->SetList(); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -150,6 +163,13 @@ void GParser::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, voi
                 return;
             }
         }
+        {
+            typedef int (GParser::*_t)(QList<paramPoint> );
+            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&GParser::filePos)) {
+                *result = 5;
+                return;
+            }
+        }
     }
 }
 
@@ -178,13 +198,13 @@ int GParser::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 8)
+        if (_id < 10)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 8;
+        _id -= 10;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 8)
+        if (_id < 10)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 8;
+        _id -= 10;
     }
     return _id;
 }
@@ -231,6 +251,15 @@ int GParser::cmdComment()
     int _t0 = int();
     void *_a[] = { const_cast<void*>(reinterpret_cast<const void*>(&_t0)) };
     QMetaObject::activate(this, &staticMetaObject, 4, _a);
+    return _t0;
+}
+
+// SIGNAL 5
+int GParser::filePos(QList<paramPoint> _t1)
+{
+    int _t0 = int();
+    void *_a[] = { const_cast<void*>(reinterpret_cast<const void*>(&_t0)), const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
+    QMetaObject::activate(this, &staticMetaObject, 5, _a);
     return _t0;
 }
 QT_WARNING_POP
