@@ -21,8 +21,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_MainWindow_t {
-    QByteArrayData data[25];
-    char stringdata0[373];
+    QByteArrayData data[28];
+    char stringdata0[432];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -44,31 +44,36 @@ QT_MOC_LITERAL(9, 76, 9), // "writeData"
 QT_MOC_LITERAL(10, 86, 4), // "data"
 QT_MOC_LITERAL(11, 91, 7), // "Connect"
 QT_MOC_LITERAL(12, 99, 9), // "Disconect"
-QT_MOC_LITERAL(13, 109, 24), // "on_SPEED_editingFinished"
-QT_MOC_LITERAL(14, 134, 26), // "on_pushButton_play_clicked"
-QT_MOC_LITERAL(15, 161, 23), // "on_pushButton_8_clicked"
-QT_MOC_LITERAL(16, 185, 19), // "on_openFile_clicked"
-QT_MOC_LITERAL(17, 205, 26), // "on_textOpenFile_textEdited"
-QT_MOC_LITERAL(18, 232, 4), // "arg1"
-QT_MOC_LITERAL(19, 237, 18), // "on_scanCom_clicked"
-QT_MOC_LITERAL(20, 256, 24), // "on_connectButton_clicked"
-QT_MOC_LITERAL(21, 281, 21), // "on_SPEED_valueChanged"
-QT_MOC_LITERAL(22, 303, 31), // "on_sendToTerminalButton_clicked"
-QT_MOC_LITERAL(23, 335, 21), // "on_pushButton_clicked"
-QT_MOC_LITERAL(24, 357, 15) // "printToTerminal"
+QT_MOC_LITERAL(13, 109, 8), // "FileData"
+QT_MOC_LITERAL(14, 118, 24), // "on_SPEED_editingFinished"
+QT_MOC_LITERAL(15, 143, 26), // "on_pushButton_play_clicked"
+QT_MOC_LITERAL(16, 170, 23), // "on_pushButton_8_clicked"
+QT_MOC_LITERAL(17, 194, 19), // "on_openFile_clicked"
+QT_MOC_LITERAL(18, 214, 18), // "on_scanCom_clicked"
+QT_MOC_LITERAL(19, 233, 24), // "on_connectButton_clicked"
+QT_MOC_LITERAL(20, 258, 21), // "on_SPEED_valueChanged"
+QT_MOC_LITERAL(21, 280, 4), // "arg1"
+QT_MOC_LITERAL(22, 285, 25), // "on_pushButton_YUp_clicked"
+QT_MOC_LITERAL(23, 311, 26), // "on_textOpenFile_textEdited"
+QT_MOC_LITERAL(24, 338, 31), // "on_sendToTerminalButton_clicked"
+QT_MOC_LITERAL(25, 370, 21), // "on_pushButton_clicked"
+QT_MOC_LITERAL(26, 392, 15), // "printToTerminal"
+QT_MOC_LITERAL(27, 408, 23) // "off_connectButton_state"
 
     },
     "MainWindow\0savesettings\0\0name\0baudrate\0"
     "DataBits\0Parity\0StopBits\0FlowControl\0"
     "writeData\0data\0Connect\0Disconect\0"
-    "on_SPEED_editingFinished\0"
+    "FileData\0on_SPEED_editingFinished\0"
     "on_pushButton_play_clicked\0"
     "on_pushButton_8_clicked\0on_openFile_clicked\0"
-    "on_textOpenFile_textEdited\0arg1\0"
     "on_scanCom_clicked\0on_connectButton_clicked\0"
-    "on_SPEED_valueChanged\0"
+    "on_SPEED_valueChanged\0arg1\0"
+    "on_pushButton_YUp_clicked\0"
+    "on_textOpenFile_textEdited\0"
     "on_sendToTerminalButton_clicked\0"
-    "on_pushButton_clicked\0printToTerminal"
+    "on_pushButton_clicked\0printToTerminal\0"
+    "off_connectButton_state"
 };
 #undef QT_MOC_LITERAL
 
@@ -78,50 +83,56 @@ static const uint qt_meta_data_MainWindow[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-      15,   14, // methods
+      18,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
-       4,       // signalCount
+       5,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    6,   89,    2, 0x06 /* Public */,
-       9,    1,  102,    2, 0x06 /* Public */,
-      11,    0,  105,    2, 0x06 /* Public */,
-      12,    0,  106,    2, 0x06 /* Public */,
+       1,    6,  104,    2, 0x06 /* Public */,
+       9,    1,  117,    2, 0x06 /* Public */,
+      11,    0,  120,    2, 0x06 /* Public */,
+      12,    0,  121,    2, 0x06 /* Public */,
+      13,    1,  122,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-      13,    0,  107,    2, 0x08 /* Private */,
-      14,    0,  108,    2, 0x08 /* Private */,
-      15,    0,  109,    2, 0x08 /* Private */,
-      16,    0,  110,    2, 0x08 /* Private */,
-      17,    1,  111,    2, 0x08 /* Private */,
-      19,    0,  114,    2, 0x08 /* Private */,
-      20,    0,  115,    2, 0x08 /* Private */,
-      21,    1,  116,    2, 0x08 /* Private */,
-      22,    0,  119,    2, 0x0a /* Public */,
-      23,    0,  120,    2, 0x0a /* Public */,
-      24,    1,  121,    2, 0x0a /* Public */,
+      14,    0,  125,    2, 0x08 /* Private */,
+      15,    0,  126,    2, 0x08 /* Private */,
+      16,    0,  127,    2, 0x08 /* Private */,
+      17,    0,  128,    2, 0x08 /* Private */,
+      18,    0,  129,    2, 0x08 /* Private */,
+      19,    0,  130,    2, 0x08 /* Private */,
+      20,    1,  131,    2, 0x08 /* Private */,
+      22,    0,  134,    2, 0x08 /* Private */,
+      23,    1,  135,    2, 0x0a /* Public */,
+      24,    0,  138,    2, 0x0a /* Public */,
+      25,    0,  139,    2, 0x0a /* Public */,
+      26,    1,  140,    2, 0x0a /* Public */,
+      27,    0,  143,    2, 0x0a /* Public */,
 
  // signals: parameters
     QMetaType::Void, QMetaType::QString, QMetaType::Int, QMetaType::Int, QMetaType::Int, QMetaType::Int, QMetaType::Int,    3,    4,    5,    6,    7,    8,
     QMetaType::Void, QMetaType::QByteArray,   10,
     QMetaType::Void,
     QMetaType::Void,
+    QMetaType::Void, QMetaType::QStringList,   10,
 
  // slots: parameters
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::QString,   18,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::QString,   18,
+    QMetaType::Void, QMetaType::QString,   21,
+    QMetaType::Void,
+    QMetaType::Void, QMetaType::QString,   21,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::QString,   18,
+    QMetaType::Void, QMetaType::QString,   21,
+    QMetaType::Void,
 
        0        // eod
 };
@@ -136,16 +147,18 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 1: _t->writeData((*reinterpret_cast< QByteArray(*)>(_a[1]))); break;
         case 2: _t->Connect(); break;
         case 3: _t->Disconect(); break;
-        case 4: _t->on_SPEED_editingFinished(); break;
-        case 5: _t->on_pushButton_play_clicked(); break;
-        case 6: _t->on_pushButton_8_clicked(); break;
-        case 7: _t->on_openFile_clicked(); break;
-        case 8: _t->on_textOpenFile_textEdited((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 4: _t->FileData((*reinterpret_cast< const QStringList(*)>(_a[1]))); break;
+        case 5: _t->on_SPEED_editingFinished(); break;
+        case 6: _t->on_pushButton_play_clicked(); break;
+        case 8: _t->on_openFile_clicked(); break;
         case 9: _t->on_scanCom_clicked(); break;
         case 10: _t->on_connectButton_clicked(); break;
         case 11: _t->on_SPEED_valueChanged((*reinterpret_cast< const QString(*)>(_a[1]))); break;
-        case 12: _t->on_sendToTerminalButton_clicked(); break;
-        case 14: _t->printToTerminal((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 12: _t->on_pushButton_YUp_clicked(); break;
+        case 13: _t->on_textOpenFile_textEdited((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 14: _t->on_sendToTerminalButton_clicked(); break;
+        case 16: _t->printToTerminal((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 17: _t->off_connectButton_state(); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -179,6 +192,13 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
                 return;
             }
         }
+        {
+            typedef void (MainWindow::*_t)(const QStringList & );
+            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&MainWindow::FileData)) {
+                *result = 4;
+                return;
+            }
+        }
     }
 }
 
@@ -207,13 +227,13 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 15)
+        if (_id < 18)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 15;
+        _id -= 18;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 15)
+        if (_id < 18)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 15;
+        _id -= 18;
     }
     return _id;
 }
@@ -242,6 +262,13 @@ void MainWindow::Connect()
 void MainWindow::Disconect()
 {
     QMetaObject::activate(this, &staticMetaObject, 3, Q_NULLPTR);
+}
+
+// SIGNAL 4
+void MainWindow::FileData(const QStringList & _t1)
+{
+    void *_a[] = { Q_NULLPTR, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
+    QMetaObject::activate(this, &staticMetaObject, 4, _a);
 }
 QT_WARNING_POP
 QT_END_MOC_NAMESPACE

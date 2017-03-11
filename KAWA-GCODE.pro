@@ -4,8 +4,8 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
-QT      += serialport
+QT += core gui
+QT += serialport
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets printsupport
 
@@ -15,11 +15,13 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
+    port.cpp \
     gparser.cpp \
-    port.cpp
+    programrun.cpp
 
 HEADERS  += mainwindow.h \
+    port.h \
     gparser.h \
-    port.h
+    programrun.h
 
 FORMS    += mainwindow.ui

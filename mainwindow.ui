@@ -29,7 +29,7 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QPushButton" name="pushButton_8">
+   <widget class="QPushButton" name="pushButton_YUp">
     <property name="geometry">
      <rect>
       <x>580</x>
@@ -42,7 +42,7 @@
      <string>Y+</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_12">
+   <widget class="QPushButton" name="pushButton_ZDown">
     <property name="geometry">
      <rect>
       <x>510</x>
@@ -55,7 +55,7 @@
      <string>Z -</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_13">
+   <widget class="QPushButton" name="pushButton_ZUp">
     <property name="geometry">
      <rect>
       <x>650</x>
@@ -68,7 +68,7 @@
      <string>Z +</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_14">
+   <widget class="QPushButton" name="j3_up">
     <property name="geometry">
      <rect>
       <x>570</x>
@@ -87,7 +87,7 @@
      <string>+</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_15">
+   <widget class="QPushButton" name="j3_down">
     <property name="geometry">
      <rect>
       <x>570</x>
@@ -148,7 +148,7 @@
      <set>Qt::NoTextInteraction</set>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_21">
+   <widget class="QPushButton" name="j4_down">
     <property name="geometry">
      <rect>
       <x>625</x>
@@ -167,7 +167,7 @@
      <string>-</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_29">
+   <widget class="QPushButton" name="j6_up">
     <property name="geometry">
      <rect>
       <x>733</x>
@@ -228,7 +228,7 @@
      <set>Qt::NoTextInteraction</set>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_20">
+   <widget class="QPushButton" name="j4_up">
     <property name="geometry">
      <rect>
       <x>625</x>
@@ -247,7 +247,7 @@
      <string>+</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_30">
+   <widget class="QPushButton" name="j6_down">
     <property name="geometry">
      <rect>
       <x>733</x>
@@ -308,7 +308,7 @@
      <set>Qt::NoTextInteraction</set>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_25">
+   <widget class="QPushButton" name="j5_down">
     <property name="geometry">
      <rect>
       <x>679</x>
@@ -369,7 +369,7 @@
      <set>Qt::NoTextInteraction</set>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_24">
+   <widget class="QPushButton" name="j5_up">
     <property name="geometry">
      <rect>
       <x>679</x>
@@ -447,7 +447,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButton_3">
+          <widget class="QPushButton" name="pushButton_Stop">
            <property name="text">
             <string>Stop</string>
            </property>
@@ -570,7 +570,7 @@ p, li { white-space: pre-wrap; }
     <property name="orientation">
      <enum>Qt::Horizontal</enum>
     </property>
-    <widget class="QPushButton" name="pushButton_11">
+    <widget class="QPushButton" name="pushButton_XDown">
      <property name="enabled">
       <bool>true</bool>
      </property>
@@ -578,12 +578,12 @@ p, li { white-space: pre-wrap; }
       <string>X -</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton_9">
+    <widget class="QPushButton" name="pushButton_YDown">
      <property name="text">
       <string>Y -</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton_10">
+    <widget class="QPushButton" name="pushButton_XUp">
      <property name="text">
       <string>X +</string>
      </property>
@@ -673,7 +673,7 @@ p, li { white-space: pre-wrap; }
      <set>Qt::NoTextInteraction</set>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_19">
+   <widget class="QPushButton" name="j2_down">
     <property name="geometry">
      <rect>
       <x>516</x>
@@ -692,7 +692,7 @@ p, li { white-space: pre-wrap; }
      <string>-</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_22">
+   <widget class="QPushButton" name="j1_up">
     <property name="geometry">
      <rect>
       <x>462</x>
@@ -711,7 +711,7 @@ p, li { white-space: pre-wrap; }
      <string>+</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_18">
+   <widget class="QPushButton" name="j2_up">
     <property name="geometry">
      <rect>
       <x>516</x>
@@ -730,7 +730,7 @@ p, li { white-space: pre-wrap; }
      <string>+</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_23">
+   <widget class="QPushButton" name="j1_down">
     <property name="geometry">
      <rect>
       <x>462</x>
@@ -874,28 +874,28 @@ p, li { white-space: pre-wrap; }
    <zorder>splitter</zorder>
    <zorder>label_6</zorder>
    <zorder>label_4</zorder>
-   <zorder>pushButton_19</zorder>
-   <zorder>pushButton_22</zorder>
-   <zorder>pushButton_18</zorder>
-   <zorder>pushButton_23</zorder>
+   <zorder>j2_down</zorder>
+   <zorder>j1_up</zorder>
+   <zorder>j2_up</zorder>
+   <zorder>j1_down</zorder>
    <zorder>splitter_6</zorder>
    <zorder>splitter_4</zorder>
-   <zorder>pushButton_8</zorder>
-   <zorder>pushButton_12</zorder>
-   <zorder>pushButton_13</zorder>
-   <zorder>pushButton_14</zorder>
-   <zorder>pushButton_15</zorder>
+   <zorder>pushButton_YUp</zorder>
+   <zorder>pushButton_ZDown</zorder>
+   <zorder>pushButton_ZUp</zorder>
+   <zorder>j3_up</zorder>
+   <zorder>j3_down</zorder>
    <zorder>label_2</zorder>
    <zorder>layoutWidget</zorder>
-   <zorder>pushButton_21</zorder>
-   <zorder>pushButton_29</zorder>
+   <zorder>j4_down</zorder>
+   <zorder>j6_up</zorder>
    <zorder>label_5</zorder>
-   <zorder>pushButton_20</zorder>
-   <zorder>pushButton_30</zorder>
+   <zorder>j4_up</zorder>
+   <zorder>j6_down</zorder>
    <zorder>label_8</zorder>
-   <zorder>pushButton_25</zorder>
+   <zorder>j5_down</zorder>
    <zorder>label_7</zorder>
-   <zorder>pushButton_24</zorder>
+   <zorder>j5_up</zorder>
    <zorder>currentPos</zorder>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
@@ -928,22 +928,6 @@ p, li { white-space: pre-wrap; }
  <layoutdefault spacing="6" margin="11"/>
  <resources/>
  <connections>
-  <connection>
-   <sender>pushButton_play</sender>
-   <signal>clicked()</signal>
-   <receiver>terminal</receiver>
-   <slot>clear()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>264</x>
-     <y>121</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>185</x>
-     <y>416</y>
-    </hint>
-   </hints>
-  </connection>
   <connection>
    <sender>textOpenFile</sender>
    <signal>editingFinished()</signal>
