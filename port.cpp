@@ -69,6 +69,7 @@ void  Port::DisconnectPort(){
 }
 
 void Port :: WriteToPort(QByteArray data){
+    //qDebug() << "WriteToPort: " + data;
     if(thisPort.isOpen()){
         thisPort.write(data+'\r');
     }

@@ -29,6 +29,7 @@ signals:
     StopMove();
     Move(QByteArray move);
     FinishMove();
+    MovePrint(QString cmd);
 public slots:
     void GetList(const QList<paramPoint> &pos);
     void setStep(int step);

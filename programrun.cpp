@@ -39,13 +39,14 @@ void ProgramRun::PlayMove()
 
 void ProgramRun::StopProgram()
 {
+    step = 0;
     play = false;
 }
 void ProgramRun::StartProgram(const QList<paramPoint> &posList)
 {
-    qDebug() << "Program run" << posList.length() << "step: " << step;
     play = true;
     continueMove = true;
+    step = 0;
     while(play)
     {
         //wait until the response
@@ -60,8 +61,9 @@ void ProgramRun::StartProgram(const QList<paramPoint> &posList)
             qDebug() << "Program run" << posList.length() << "step: " << step;
             qDebug() << "Set Move" << posList.at(step).x;
             continueMove = false;
-
-            emit Move(SendMove(posList.at(step)));
+            QByteArray cmd = SendMove(posList.at(step));
+            emit Move(cmd);
+            emit MovePrint(cmd);
             nextStep();
         }
     }

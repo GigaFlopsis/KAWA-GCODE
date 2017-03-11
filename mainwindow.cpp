@@ -43,15 +43,14 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(ui->pushButton_pause,SIGNAL(pressed()),RunMove,SLOT(PlayMove()),Qt::DirectConnection);
     connect(ui->pushButton_Stop,SIGNAL(pressed()),RunMove,SLOT(StopProgram()),Qt::DirectConnection);
+    connect(gparse,SIGNAL(cmdComplite()),RunMove,SLOT(PlayMove()),Qt::DirectConnection); //next pos if complit movement
+    connect(RunMove,SIGNAL(Move(QByteArray)),PortNew,SLOT(WriteToPort(QByteArray))); //
+    connect(RunMove,SIGNAL(MovePrint(QString)),this,SLOT(printToTerminal(QString))); //
 
-   // connect(ui->pushButton_play,SIGNAL(pressed()),RunMove,SLOT(StartProgram()));
 
-//    connect(gparse,SIGNAL(cmdComplite()),RunMove,SLOT(PlayMove(true)),Qt::DirectConnection);
-//    connect(RunMove,SIGNAL(Move(QByteArray)),PortNew,SLOT(WriteToPort(QByteArray)),Qt::DirectConnection);
 
-//    connect(this, SIGNAL(writeData(QByteArray)), PortNew, SLOT(WriteToPort(QByteArray))); //move
-//    connect(this, SIGNAL(writeData(QByteArray)), this, SLOT(printToTerminal(QString)) ); //move
-//    //connect(thread_Move, SIGNAL(started()), RunMove, SLOT(StartProgram()),Qt::DirectConnection);//Переназначение метода выход
+    connect(this, SIGNAL(writeData(QByteArray)), PortNew, SLOT(WriteToPort(QByteArray))); //move
+    connect(this, SIGNAL(writeData(QByteArray)), this, SLOT(printToTerminal(QString)) ); //move
 
 
 //port
@@ -67,7 +66,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(PortNew, SIGNAL(outPort(QString)),this,SLOT(printToTerminal(QString))); //print to terminal
     connect(PortNew, SIGNAL(disconnect()),this,SLOT(off_connectButton_state())); //state connect button
 
-    connect(this, SIGNAL(outPort(QString)),gparse,SLOT(ParseCmd(QString))); //print to terminal
+    connect(PortNew, SIGNAL(outPort(QString)),gparse,SLOT(ParseCmd(QString))); //print to terminal
     connect(this, SIGNAL(FileData(QStringList)),gparse,SLOT(ParsingFile(QStringList))); //send file to parsing
 
     thread_Port->start();
