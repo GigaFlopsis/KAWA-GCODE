@@ -2,58 +2,73 @@
 
 ProgramRun::ProgramRun(QObject *parent) : QObject(parent)
 {
-
+    qDebug() << "Start ProgramRun";
 }
 ProgramRun::~ProgramRun()
 {
-    emit StopMove();
+    qDebug() << "Stop ProgramRun";
 }
 
-//run movement
-void ProgramRun::SetProgram(const QList<paramPoint> &pos)
+int step = 0;
+//get list
+void ProgramRun::GetList(const QList<paramPoint> &pos)
 {
-    if(play)
-    {
-      //wait until the response
-      if(continueMove)
-      {
-      continueMove = false;
-      nextStep();
-      emit Move(SendMove(pos.at(step)));
-      qDebug() << "Set Move" << pos.at(step).x;
-      }
-    }
-    emit FinishMove();
+ //   posList = pos;
 }
 
 
 void ProgramRun::setStep(int num)
 {
-step = num;
+    step = num;
 }
 
 void ProgramRun::nextStep()
 {
-step++;
+    step++;
 }
 
 void ProgramRun::prevStep()
 {
-step--;
+    step--;
 }
 
-void ProgramRun::PlayMove(bool state)
+void ProgramRun::PlayMove()
 {
-continueMove = state;
+    continueMove = true;
 }
+
 void ProgramRun::StopProgram()
 {
-play = false;
+    play = false;
 }
-void ProgramRun::StartProgram()
+void ProgramRun::StartProgram(const QList<paramPoint> &posList)
 {
-play = true;
+    qDebug() << "Program run" << posList.length() << "step: " << step;
+    play = true;
+    continueMove = true;
+    while(play)
+    {
+        //wait until the response
+        if(continueMove)
+        {
+            if(posList.isEmpty() || step > posList.length())
+            {
+               qDebug() << "Empty list";
+               play = false;
+               break;
+            }
+            qDebug() << "Program run" << posList.length() << "step: " << step;
+            qDebug() << "Set Move" << posList.at(step).x;
+            continueMove = false;
+
+            emit Move(SendMove(posList.at(step)));
+            nextStep();
+        }
+    }
+    qDebug() << "FinishMove";
+    emit FinishMove();
 }
+
 
 QByteArray ProgramRun::SendMove(paramPoint data)
 {

@@ -7,6 +7,9 @@
 #include "QString"
 #include "QByteArray"
 #include "QDebug"
+//#include <QMetaType>
+
+//Q_DECLARE_METATYPE(QList<paramPoint>)
 
 class ProgramRun : public QObject
 {
@@ -18,19 +21,22 @@ public:
     int step = 0;
     bool play = true;
     bool continueMove = true;
+
+protected:
+   QList<paramPoint> posList;
 signals:
     NextMove();
     StopMove();
     Move(QByteArray move);
     FinishMove();
 public slots:
-    void SetProgram(const QList<paramPoint> &pos);
+    void GetList(const QList<paramPoint> &pos);
     void setStep(int step);
     void nextStep();
     void prevStep();
-    void PlayMove(bool state);
+    void PlayMove();
     void StopProgram();
-    void StartProgram();
+    void StartProgram(const QList<paramPoint> &posList);
 
 private:
     QByteArray SendMove(paramPoint data);

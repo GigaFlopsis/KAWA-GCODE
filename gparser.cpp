@@ -5,11 +5,13 @@
 #include "port.h"
 #include "QStringList"
 #include "QString"
+#include <QList>
 
 
 GParser::GParser(QObject *parent) : QObject(parent)
 {
 }
+
 
 void GParser::Debug(QString &text)
 {
@@ -151,7 +153,12 @@ void GParser::ChangeEmpyParam(paramPoint &targerPos,paramPoint prevPos)
 
 void GParser::SetList()
 {
-   qDebug() << "setList";
    if(posList.length() != 0)
-   emit filePos(posList);
+    {
+     emit filePos(posList);
+    }
+   else
+   {
+       qDebug() << "zero cmd";
+   }
 }

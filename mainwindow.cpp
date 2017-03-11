@@ -14,6 +14,8 @@
 #include <QFileDialog>
 #include <gparser.h>
 #include "programrun.h"
+#include <QList>
+#include <QMetaType>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -21,29 +23,38 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    GParser *gparse = new GParser;
+    GParser *gparse = new GParser();
     Port *PortNew = new Port();//creat object class Port
     ProgramRun *RunMove = new ProgramRun();
     QThread *thread_Port = new QThread;//Create new thead for COM port
     QThread *thread_Move = new QThread;//Create new thead for Move
 
     PortNew->moveToThread(thread_Port);//moved class to tread
-//    PortNew->thisPort.moveToThread(thread_Port);//moved port to tread
-//    RunMove->moveToThread(thread_Move);
+    PortNew->thisPort.moveToThread(thread_Port);//moved port to tread
+    RunMove->moveToThread(thread_Move);
+
+
+    //thread_Move
+    // start move
+    qRegisterMetaType<QList<paramPoint>>("QList<paramPoint>");
 
     connect(ui->pushButton_play,SIGNAL(pressed()),gparse,SLOT(SetList()));
-    connect(ui->pushButton_pause,SIGNAL(cmdComplite()),RunMove,SLOT(StopProgram()));
+    connect(gparse,SIGNAL(filePos(QList<paramPoint>)),RunMove,SLOT(StartProgram(QList<paramPoint>)));
 
-    connect(gparse,SIGNAL(filePos(QList<paramPoint>)),RunMove,SLOT(SetProgram(QList<paramPoint>)),Qt::DirectConnection);
-    connect(gparse,SIGNAL(cmdComplite()),RunMove,SLOT(PlayMove(true)),Qt::DirectConnection);
-    connect(RunMove,SIGNAL(FinishMove()),gparse,SIGNAL(filePos(QList<paramPoint>)));
-    connect(RunMove,SIGNAL(Move(QByteArray)),PortNew,SLOT(WriteToPort(QByteArray)));
-    connect(this, SIGNAL(writeData(QByteArray)), PortNew, SLOT(WriteToPort(QByteArray))); //move
-    connect(this, SIGNAL(writeData(QByteArray)), this, SLOT(printToTerminal(QString)); //move
+    connect(ui->pushButton_pause,SIGNAL(pressed()),RunMove,SLOT(PlayMove()),Qt::DirectConnection);
+    connect(ui->pushButton_Stop,SIGNAL(pressed()),RunMove,SLOT(StopProgram()),Qt::DirectConnection);
+
+   // connect(ui->pushButton_play,SIGNAL(pressed()),RunMove,SLOT(StartProgram()));
+
+//    connect(gparse,SIGNAL(cmdComplite()),RunMove,SLOT(PlayMove(true)),Qt::DirectConnection);
+//    connect(RunMove,SIGNAL(Move(QByteArray)),PortNew,SLOT(WriteToPort(QByteArray)),Qt::DirectConnection);
+
+//    connect(this, SIGNAL(writeData(QByteArray)), PortNew, SLOT(WriteToPort(QByteArray))); //move
+//    connect(this, SIGNAL(writeData(QByteArray)), this, SLOT(printToTerminal(QString)) ); //move
+//    //connect(thread_Move, SIGNAL(started()), RunMove, SLOT(StartProgram()),Qt::DirectConnection);//Переназначение метода выход
 
 
-
-
+//port
     connect(thread_Port, SIGNAL(started()), PortNew, SLOT(process_Port()));//Переназначения метода run
     connect(this,SIGNAL(savesettings(QString,int,int,int,int,int)),PortNew,SLOT(Write_Settings_Port(QString,int,int,int,int,int)));//set param port
     connect(PortNew, SIGNAL(finished_Port()), thread_Port, SLOT(quit()));//Переназначение метода выход
@@ -60,7 +71,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(this, SIGNAL(FileData(QStringList)),gparse,SLOT(ParsingFile(QStringList))); //send file to parsing
 
     thread_Port->start();
-  //  thread_Move->start();
+    thread_Move->start();
 }
 
 MainWindow::~MainWindow()
@@ -75,7 +86,6 @@ void MainWindow::printToTerminal(const QString &arg1)
     qDebug() << arg1;
 
 }
-
 
 
 void MainWindow::on_SPEED_editingFinished()

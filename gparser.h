@@ -38,7 +38,7 @@ signals:
     cmdFinish();
     cmdResponse();
     cmdComment();
-    filePos(QList<paramPoint> posList);
+    filePos(QList<paramPoint> List);
 
 public slots:
     void ParseCmd(const QString &arg1);
@@ -49,5 +49,7 @@ private:
     paramPoint ParseParam(QStringList list); //set parsing line file
     void ChangeEmpyParam(paramPoint &targetPos, paramPoint currentPos);
 };
+
+Q_DECLARE_METATYPE(paramPoint);
 
 #endif // GPARSER_H

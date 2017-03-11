@@ -150,6 +150,7 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 4: _t->FileData((*reinterpret_cast< const QStringList(*)>(_a[1]))); break;
         case 5: _t->on_SPEED_editingFinished(); break;
         case 6: _t->on_pushButton_play_clicked(); break;
+//        case 7: _t->on_pushButton_8_clicked(); break;
         case 8: _t->on_openFile_clicked(); break;
         case 9: _t->on_scanCom_clicked(); break;
         case 10: _t->on_connectButton_clicked(); break;
@@ -157,6 +158,7 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 12: _t->on_pushButton_YUp_clicked(); break;
         case 13: _t->on_textOpenFile_textEdited((*reinterpret_cast< const QString(*)>(_a[1]))); break;
         case 14: _t->on_sendToTerminalButton_clicked(); break;
+//        case 15: _t->on_pushButton_clicked(); break;
         case 16: _t->printToTerminal((*reinterpret_cast< const QString(*)>(_a[1]))); break;
         case 17: _t->off_connectButton_state(); break;
         default: ;

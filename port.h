@@ -34,6 +34,7 @@ signals:
     void error_(QString err);
     void outPort(QString data);
     void disconnect();
+    void GetStart();
 public slots:
 
     void DisconnectPort();

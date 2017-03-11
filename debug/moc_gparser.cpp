@@ -23,7 +23,7 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_GParser_t {
     QByteArrayData data[16];
-    char stringdata0[146];
+    char stringdata0[143];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -41,19 +41,19 @@ QT_MOC_LITERAL(5, 40, 11), // "cmdResponse"
 QT_MOC_LITERAL(6, 52, 10), // "cmdComment"
 QT_MOC_LITERAL(7, 63, 7), // "filePos"
 QT_MOC_LITERAL(8, 71, 17), // "QList<paramPoint>"
-QT_MOC_LITERAL(9, 89, 7), // "posList"
-QT_MOC_LITERAL(10, 97, 8), // "ParseCmd"
-QT_MOC_LITERAL(11, 106, 4), // "arg1"
-QT_MOC_LITERAL(12, 111, 11), // "ParsingFile"
-QT_MOC_LITERAL(13, 123, 4), // "data"
-QT_MOC_LITERAL(14, 128, 9), // "ClearList"
-QT_MOC_LITERAL(15, 138, 7) // "SetList"
+QT_MOC_LITERAL(9, 89, 4), // "List"
+QT_MOC_LITERAL(10, 94, 8), // "ParseCmd"
+QT_MOC_LITERAL(11, 103, 4), // "arg1"
+QT_MOC_LITERAL(12, 108, 11), // "ParsingFile"
+QT_MOC_LITERAL(13, 120, 4), // "data"
+QT_MOC_LITERAL(14, 125, 9), // "ClearList"
+QT_MOC_LITERAL(15, 135, 7) // "SetList"
 
     },
     "GParser\0cmdComplite\0\0cmdError\0cmdFinish\0"
     "cmdResponse\0cmdComment\0filePos\0"
-    "QList<paramPoint>\0posList\0ParseCmd\0"
-    "arg1\0ParsingFile\0data\0ClearList\0SetList"
+    "QList<paramPoint>\0List\0ParseCmd\0arg1\0"
+    "ParsingFile\0data\0ClearList\0SetList"
 };
 #undef QT_MOC_LITERAL
 
@@ -124,6 +124,17 @@ void GParser::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, voi
         case 8: _t->ClearList(); break;
         case 9: _t->SetList(); break;
         default: ;
+        }
+    } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
+        switch (_id) {
+        default: *reinterpret_cast<int*>(_a[0]) = -1; break;
+        case 5:
+            switch (*reinterpret_cast<int*>(_a[1])) {
+            default: *reinterpret_cast<int*>(_a[0]) = -1; break;
+            case 0:
+                *reinterpret_cast<int*>(_a[0]) = qRegisterMetaType< QList<paramPoint> >(); break;
+            }
+            break;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
         int *result = reinterpret_cast<int *>(_a[0]);
@@ -203,7 +214,7 @@ int GParser::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
         _id -= 10;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
         if (_id < 10)
-            *reinterpret_cast<int*>(_a[0]) = -1;
+            qt_static_metacall(this, _c, _id, _a);
         _id -= 10;
     }
     return _id;
