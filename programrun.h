@@ -30,12 +30,13 @@ signals:
     Move(QByteArray move);
     FinishMove();
     MovePrint(QString cmd);
+    getStep(int step);
 public slots:
-    void GetList(const QList<paramPoint> &pos);
     void setStep(int step);
     void nextStep();
     void prevStep();
     void PlayMove();
+    void PauseProgram();
     void StopProgram();
     void StartProgram(const QList<paramPoint> &posList);
 

@@ -405,7 +405,7 @@
          <item>
           <widget class="QLabel" name="label">
            <property name="text">
-            <string>Set G-code file:</string>
+            <string>Open GCODE file:</string>
            </property>
           </widget>
          </item>
@@ -492,7 +492,7 @@
        <item>
         <widget class="QProgressBar" name="progressBar">
          <property name="value">
-          <number>24</number>
+          <number>5</number>
          </property>
         </widget>
        </item>

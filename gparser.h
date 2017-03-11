@@ -39,7 +39,7 @@ signals:
     cmdResponse();
     cmdComment();
     filePos(QList<paramPoint> List);
-
+    fileLengt(int line);
 public slots:
     void ParseCmd(const QString &arg1);
     void ParsingFile(QStringList data);

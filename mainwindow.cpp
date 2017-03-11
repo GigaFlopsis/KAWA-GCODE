@@ -23,51 +23,47 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    // init obj and create thread
     GParser *gparse = new GParser();
-    Port *PortNew = new Port();//creat object class Port
-    ProgramRun *RunMove = new ProgramRun();
-    QThread *thread_Port = new QThread;//Create new thead for COM port
-    QThread *thread_Move = new QThread;//Create new thead for Move
-
-    PortNew->moveToThread(thread_Port);//moved class to tread
-    PortNew->thisPort.moveToThread(thread_Port);//moved port to tread
+    Port *PortNew = new Port();                     //creat object class Port
+    ProgramRun *RunMove = new ProgramRun();         //creat object class
+    QThread *thread_Port = new QThread;             //Create new thead for COM port
+    QThread *thread_Move = new QThread;             //Create new thead for Move
+    PortNew->moveToThread(thread_Port);             //moved class to tread
+    PortNew->thisPort.moveToThread(thread_Port);    //moved port to tread
     RunMove->moveToThread(thread_Move);
 
-
-    //thread_Move
-    // start move
     qRegisterMetaType<QList<paramPoint>>("QList<paramPoint>");
 
+    //thread_Move
+      // start move
     connect(ui->pushButton_play,SIGNAL(pressed()),gparse,SLOT(SetList()));
     connect(gparse,SIGNAL(filePos(QList<paramPoint>)),RunMove,SLOT(StartProgram(QList<paramPoint>)));
+    connect(ui->pushButton_pause,SIGNAL(pressed()),RunMove,SLOT(PlayMove()),Qt::DirectConnection);      // pause move
+    connect(ui->pushButton_Stop,SIGNAL(pressed()),RunMove,SLOT(StopProgram()),Qt::DirectConnection);    // stop move
 
-    connect(ui->pushButton_pause,SIGNAL(pressed()),RunMove,SLOT(PlayMove()),Qt::DirectConnection);
-    connect(ui->pushButton_Stop,SIGNAL(pressed()),RunMove,SLOT(StopProgram()),Qt::DirectConnection);
-    connect(gparse,SIGNAL(cmdComplite()),RunMove,SLOT(PlayMove()),Qt::DirectConnection); //next pos if complit movement
-    connect(RunMove,SIGNAL(Move(QByteArray)),PortNew,SLOT(WriteToPort(QByteArray))); //
-    connect(RunMove,SIGNAL(MovePrint(QString)),this,SLOT(printToTerminal(QString))); //
+    connect(gparse,SIGNAL(cmdComplite()),RunMove,SLOT(PlayMove()),Qt::DirectConnection);                //next pos if complide movement
+    connect(RunMove,SIGNAL(Move(QByteArray)),PortNew,SLOT(WriteToPort(QByteArray)));                    //print movement to port
+    connect(RunMove,SIGNAL(MovePrint(QString)),this,SLOT(printToTerminal(QString)));                    //print movement to terminal
 
+    connect(this, SIGNAL(writeData(QByteArray)), PortNew, SLOT(WriteToPort(QByteArray)));               //print to port
+    connect(this, SIGNAL(writeData(QByteArray)), this, SLOT(printToTerminal(QString)) );                //print to terminal
 
-
-    connect(this, SIGNAL(writeData(QByteArray)), PortNew, SLOT(WriteToPort(QByteArray))); //move
-    connect(this, SIGNAL(writeData(QByteArray)), this, SLOT(printToTerminal(QString)) ); //move
-
-
-//port
-    connect(thread_Port, SIGNAL(started()), PortNew, SLOT(process_Port()));//Переназначения метода run
+    //port settings
+    connect(thread_Port, SIGNAL(started()), PortNew, SLOT(process_Port()));                             //reinit function run
     connect(this,SIGNAL(savesettings(QString,int,int,int,int,int)),PortNew,SLOT(Write_Settings_Port(QString,int,int,int,int,int)));//set param port
-    connect(PortNew, SIGNAL(finished_Port()), thread_Port, SLOT(quit()));//Переназначение метода выход
-    connect(thread_Port, SIGNAL(finished()), PortNew, SLOT(deleteLater()));//delite tread
-    connect(PortNew, SIGNAL(finished_Port()), thread_Port, SLOT(deleteLater()));//Удалить к чертям поток
-    connect(PortNew, SIGNAL(error_(QString)), this, SLOT(printToTerminal(QString)));//Log errors
+    connect(PortNew, SIGNAL(finished_Port()), thread_Port, SLOT(quit()));                               //reinit function quit
+    connect(thread_Port, SIGNAL(finished()), PortNew, SLOT(deleteLater()));                             //delite tread
+    connect(PortNew, SIGNAL(finished_Port()), thread_Port, SLOT(deleteLater()));                        //delite tread
+    connect(PortNew, SIGNAL(error_(QString)), this, SLOT(printToTerminal(QString)));                    //Log errors
+    connect(this, SIGNAL(Connect()),PortNew,SLOT(ConnectPort()));                                       //connect to port
+    connect(this, SIGNAL(Disconect()),PortNew,SLOT(DisconnectPort()));                                  //disconnect
 
-    connect(this, SIGNAL(Connect()),PortNew,SLOT(ConnectPort())); //connect to port
-    connect(this, SIGNAL(Disconect()),PortNew,SLOT(DisconnectPort())); //disconnect
-    connect(PortNew, SIGNAL(outPort(QString)),this,SLOT(printToTerminal(QString))); //print to terminal
-    connect(PortNew, SIGNAL(disconnect()),this,SLOT(off_connectButton_state())); //state connect button
-
-    connect(PortNew, SIGNAL(outPort(QString)),gparse,SLOT(ParseCmd(QString))); //print to terminal
-    connect(this, SIGNAL(FileData(QStringList)),gparse,SLOT(ParsingFile(QStringList))); //send file to parsing
+    connect(PortNew, SIGNAL(outPort(QString)),this,SLOT(printToTerminal(QString)));                     //print to terminal
+    connect(PortNew, SIGNAL(disconnect()),this,SLOT(off_connectButton_state()));                        //state connect button
+    //parsing data
+    connect(PortNew, SIGNAL(outPort(QString)),gparse,SLOT(ParseCmd(QString)));                          //parsig send data
+    connect(this, SIGNAL(FileData(QStringList)),gparse,SLOT(ParsingFile(QStringList)));                 //send file to parsing
 
     thread_Port->start();
     thread_Move->start();
@@ -82,30 +78,18 @@ MainWindow::~MainWindow()
 void MainWindow::printToTerminal(const QString &arg1)
 {
     ui->terminal->append(arg1);
-    qDebug() << arg1;
-
 }
 
-
+//change speed moved
 void MainWindow::on_SPEED_editingFinished()
 {
     qDebug() << ui->SPEED->text();
 
 }
 
-
-//put button play
-void MainWindow::on_pushButton_play_clicked()
-{
-//    filePos(QList<paramPoint> posList);
-//start treads
-}
-
-
 //open file
 void MainWindow::on_openFile_clicked()
 {
-
     QString fileName = QFileDialog::getOpenFileName(this,
            tr("Open G-code file"), "",
            tr("G-code (*.gcode);;All Files (*)"));
@@ -184,9 +168,150 @@ void MainWindow::on_sendToTerminalButton_clicked()
    // gparser.Debug(text);
 }
 
-//move buttons
+/*** buttons ***/
+//move Y+
 void MainWindow::on_pushButton_YUp_clicked()
 {
     QString cmd = "DO LMOVE SHIFT(HERE BY 0,10,0)";
+    emit writeData(cmd.toLocal8Bit());
+    printToTerminal(cmd);
+}
+//move Y+
+void MainWindow::on_pushButton_YDown_clicked()
+{
+    QString cmd = "DO LMOVE SHIFT(HERE BY 0,-10,0)";
+    emit writeData(cmd.toLocal8Bit());
+    printToTerminal(cmd);
+}
+
+//move X-
+void MainWindow::on_pushButton_XDown_clicked()
+{
+    QString cmd = "DO LMOVE SHIFT(HERE BY -10,0,0)";
+    emit writeData(cmd.toLocal8Bit());
+    printToTerminal(cmd);
+}
+
+//move X+
+void MainWindow::on_pushButton_XUp_clicked()
+{
+    QString cmd = "DO LMOVE SHIFT(HERE BY 10,0,0)";
+    emit writeData(cmd.toLocal8Bit());
+    printToTerminal(cmd);
+}
+
+//move Z-
+void MainWindow::on_pushButton_ZDown_clicked()
+{
+    QString cmd = "DO LMOVE SHIFT(HERE BY 0,0,-10)";
+    emit writeData(cmd.toLocal8Bit());
+    printToTerminal(cmd);
+}
+//move Z+
+void MainWindow::on_pushButton_ZUp_clicked()
+{
+    QString cmd = "DO LMOVE SHIFT(HERE BY 0,0,10)";
+    emit writeData(cmd.toLocal8Bit());
+    printToTerminal(cmd);
+}
+
+//reset
+void MainWindow::on_reset_clicked()
+{
+    QString cmd = "reset";
+    printToTerminal(cmd);
+    emit writeData(cmd.toLocal8Bit());
+}
+
+//error reset
+void MainWindow::on_resetError_clicked()
+{
+    QString cmd = "ereset";
+    printToTerminal(cmd);
+    emit writeData(cmd.toLocal8Bit());
+}
+
+/*** joits move ****/
+void MainWindow::on_j1_up_clicked()
+{
+    QString cmd = "DO DRIVE 1,10," + ui->SPEED->text();
+    printToTerminal(cmd);
+    emit writeData(cmd.toLocal8Bit());
+}
+
+void MainWindow::on_j1_down_clicked()
+{
+    QString cmd = "DO DRIVE 1,-10," + ui->SPEED->text();
+    printToTerminal(cmd);
+    emit writeData(cmd.toLocal8Bit());
+}
+
+void MainWindow::on_j2_up_clicked()
+{
+    QString cmd = "DO DRIVE 2,10," + ui->SPEED->text();
+    printToTerminal(cmd);
+    emit writeData(cmd.toLocal8Bit());
+}
+
+void MainWindow::on_j2_down_clicked()
+{
+    QString cmd = "DO DRIVE 2,-10," + ui->SPEED->text();
+    printToTerminal(cmd);
+    emit writeData(cmd.toLocal8Bit());
+}
+
+void MainWindow::on_j3_up_clicked()
+{
+    QString cmd = "DO DRIVE 3,10," + ui->SPEED->text();
+    printToTerminal(cmd);
+    emit writeData(cmd.toLocal8Bit());
+}
+
+void MainWindow::on_j3_down_clicked()
+{
+    QString cmd = "DO DRIVE 3,-10," + ui->SPEED->text();
+    printToTerminal(cmd);
+    emit writeData(cmd.toLocal8Bit());
+}
+
+void MainWindow::on_j4_up_clicked()
+{
+    QString cmd = "DO DRIVE 4,10," + ui->SPEED->text();
+    printToTerminal(cmd);
+    emit writeData(cmd.toLocal8Bit());
+}
+
+void MainWindow::on_j4_down_clicked()
+{
+    QString cmd = "DO DRIVE 4,-10," + ui->SPEED->text();
+    printToTerminal(cmd);
+    emit writeData(cmd.toLocal8Bit());
+}
+
+void MainWindow::on_j5_up_clicked()
+{
+    QString cmd = "DO DRIVE 5,10," + ui->SPEED->text();
+    printToTerminal(cmd);
+    emit writeData(cmd.toLocal8Bit());
+}
+
+void MainWindow::on_j5_down_clicked()
+{
+    QString cmd = "DO DRIVE 5,-10," + ui->SPEED->text();
+    printToTerminal(cmd);
+    emit writeData(cmd.toLocal8Bit());
+}
+
+void MainWindow::on_j6_up_clicked()
+{
+    QString cmd = "DO DRIVE 6,10," + ui->SPEED->text();
+    printToTerminal(cmd);
+    emit writeData(cmd.toLocal8Bit());
+}
+
+void MainWindow::on_j6_down_clicked()
+{
+    QString cmd = "DO DRIVE 6,-10," + ui->SPEED->text();
+    printToTerminal(cmd);
     emit writeData(cmd.toLocal8Bit());
 }

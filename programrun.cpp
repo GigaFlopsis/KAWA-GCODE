@@ -9,45 +9,41 @@ ProgramRun::~ProgramRun()
     qDebug() << "Stop ProgramRun";
 }
 
-int step = 0;
-//get list
-void ProgramRun::GetList(const QList<paramPoint> &pos)
-{
- //   posList = pos;
-}
-
-
 void ProgramRun::setStep(int num)
 {
     step = num;
+    getStep(step);
 }
-
 void ProgramRun::nextStep()
 {
     step++;
+    getStep(step);
 }
-
 void ProgramRun::prevStep()
 {
     step--;
+    getStep(step);
 }
-
 void ProgramRun::PlayMove()
 {
     continueMove = true;
 }
-
+void ProgramRun::PauseProgram()
+{
+    continueMove = false;
+}
 void ProgramRun::StopProgram()
 {
     step = 0;
     play = false;
 }
+
+//start movement
 void ProgramRun::StartProgram(const QList<paramPoint> &posList)
 {
     play = true;
     continueMove = true;
-    step = 0;
-    while(play)
+    while(play && step <= posList.length())
     {
         //wait until the response
         if(continueMove)
@@ -58,8 +54,6 @@ void ProgramRun::StartProgram(const QList<paramPoint> &posList)
                play = false;
                break;
             }
-            qDebug() << "Program run" << posList.length() << "step: " << step;
-            qDebug() << "Set Move" << posList.at(step).x;
             continueMove = false;
             QByteArray cmd = SendMove(posList.at(step));
             emit Move(cmd);
@@ -71,7 +65,7 @@ void ProgramRun::StartProgram(const QList<paramPoint> &posList)
     emit FinishMove();
 }
 
-
+//parsing cmd to port
 QByteArray ProgramRun::SendMove(paramPoint data)
 {
     if(data.g == 0 || data.g == 1) //line move
@@ -83,7 +77,7 @@ QByteArray ProgramRun::SendMove(paramPoint data)
         cmd += QString::number(data.z,'f',3) + ")";
         return cmd.toLocal8Bit();
     }
-    if(data.g == 2 || data.g == 3) //line move
+    if(data.g == 2 || data.g == 3) //join move
     {
         QString cmd;
         cmd = "DO JMOVE SHIFT(a BY ";

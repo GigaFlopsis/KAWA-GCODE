@@ -475,6 +475,8 @@ release/moc_programrun.cpp: S:/Soft/Qt5.8.0/5.8/mingw53_32/include/QtCore/QObjec
 		S:/Soft/Qt5.8.0/5.8/mingw53_32/include/QtCore/qfiledevice.h \
 		S:/Soft/Qt5.8.0/5.8/mingw53_32/include/QtGui/qvector2d.h \
 		S:/Soft/Qt5.8.0/5.8/mingw53_32/include/QtGui/qtouchdevice.h \
+		S:/Soft/Qt5.8.0/5.8/mingw53_32/include/QtCore/QByteArray \
+		S:/Soft/Qt5.8.0/5.8/mingw53_32/include/QtCore/QDebug \
 		programrun.h \
 		release/moc_predefs.h \
 		S:/Soft/Qt5.8.0/5.8/mingw53_32/bin/moc.exe
@@ -620,10 +622,7 @@ release/main.o: main.cpp mainwindow.h \
 		S:/Soft/Qt5.8.0/5.8/mingw53_32/include/QtCore/qeventloop.h \
 		S:/Soft/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qdesktopwidget.h \
 		S:/Soft/Qt5.8.0/5.8/mingw53_32/include/QtGui/qguiapplication.h \
-		S:/Soft/Qt5.8.0/5.8/mingw53_32/include/QtGui/qinputmethod.h \
-		gparser.h \
-		S:/Soft/Qt5.8.0/5.8/mingw53_32/include/QtCore/QString \
-		S:/Soft/Qt5.8.0/5.8/mingw53_32/include/QtGui/QList
+		S:/Soft/Qt5.8.0/5.8/mingw53_32/include/QtGui/qinputmethod.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\main.o main.cpp
 
 release/mainwindow.o: mainwindow.cpp mainwindow.h \
@@ -838,7 +837,10 @@ release/mainwindow.o: mainwindow.cpp mainwindow.h \
 		S:/Soft/Qt5.8.0/5.8/mingw53_32/include/QtCore/qdir.h \
 		S:/Soft/Qt5.8.0/5.8/mingw53_32/include/QtCore/qfileinfo.h \
 		gparser.h \
-		S:/Soft/Qt5.8.0/5.8/mingw53_32/include/QtGui/QList
+		S:/Soft/Qt5.8.0/5.8/mingw53_32/include/QtGui/QList \
+		programrun.h \
+		S:/Soft/Qt5.8.0/5.8/mingw53_32/include/QtCore/QByteArray \
+		S:/Soft/Qt5.8.0/5.8/mingw53_32/include/QtCore/QMetaType
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\mainwindow.o mainwindow.cpp
 
 release/port.o: port.cpp port.h \
@@ -895,20 +897,7 @@ release/port.o: port.cpp port.h \
 		S:/Soft/Qt5.8.0/5.8/mingw53_32/include/QtCore/qiodevice.h \
 		S:/Soft/Qt5.8.0/5.8/mingw53_32/include/QtSerialPort/qserialportglobal.h \
 		S:/Soft/Qt5.8.0/5.8/mingw53_32/include/QtSerialPort/QSerialPortInfo \
-		S:/Soft/Qt5.8.0/5.8/mingw53_32/include/QtSerialPort/qserialportinfo.h \
-		S:/Soft/Qt5.8.0/5.8/mingw53_32/include/QtCore/qdebug.h \
-		S:/Soft/Qt5.8.0/5.8/mingw53_32/include/QtCore/qhash.h \
-		S:/Soft/Qt5.8.0/5.8/mingw53_32/include/QtCore/qmap.h \
-		S:/Soft/Qt5.8.0/5.8/mingw53_32/include/QtCore/qtextstream.h \
-		S:/Soft/Qt5.8.0/5.8/mingw53_32/include/QtCore/qlocale.h \
-		S:/Soft/Qt5.8.0/5.8/mingw53_32/include/QtCore/qvariant.h \
-		S:/Soft/Qt5.8.0/5.8/mingw53_32/include/QtCore/qshareddata.h \
-		S:/Soft/Qt5.8.0/5.8/mingw53_32/include/QtCore/qvector.h \
-		S:/Soft/Qt5.8.0/5.8/mingw53_32/include/QtCore/qpoint.h \
-		S:/Soft/Qt5.8.0/5.8/mingw53_32/include/QtCore/qset.h \
-		S:/Soft/Qt5.8.0/5.8/mingw53_32/include/QtCore/qcontiguouscache.h \
-		S:/Soft/Qt5.8.0/5.8/mingw53_32/include/QtCore/qsharedpointer.h \
-		S:/Soft/Qt5.8.0/5.8/mingw53_32/include/QtCore/qsharedpointer_impl.h
+		S:/Soft/Qt5.8.0/5.8/mingw53_32/include/QtSerialPort/qserialportinfo.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\port.o port.cpp
 
 release/gparser.o: gparser.cpp gparser.h \
@@ -1092,7 +1081,9 @@ release/programrun.o: programrun.cpp programrun.h \
 		S:/Soft/Qt5.8.0/5.8/mingw53_32/include/QtCore/qfile.h \
 		S:/Soft/Qt5.8.0/5.8/mingw53_32/include/QtCore/qfiledevice.h \
 		S:/Soft/Qt5.8.0/5.8/mingw53_32/include/QtGui/qvector2d.h \
-		S:/Soft/Qt5.8.0/5.8/mingw53_32/include/QtGui/qtouchdevice.h
+		S:/Soft/Qt5.8.0/5.8/mingw53_32/include/QtGui/qtouchdevice.h \
+		S:/Soft/Qt5.8.0/5.8/mingw53_32/include/QtCore/QByteArray \
+		S:/Soft/Qt5.8.0/5.8/mingw53_32/include/QtCore/QDebug
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\programrun.o programrun.cpp
 
 release/moc_mainwindow.o: release/moc_mainwindow.cpp 

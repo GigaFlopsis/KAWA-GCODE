@@ -276,7 +276,7 @@ public:
 
         progressBar = new QProgressBar(layoutWidget);
         progressBar->setObjectName(QStringLiteral("progressBar"));
-        progressBar->setValue(24);
+        progressBar->setValue(5);
 
         verticalLayout->addWidget(progressBar);
 
@@ -494,7 +494,7 @@ public:
         j5_down->setText(QApplication::translate("MainWindow", "-", Q_NULLPTR));
         label_7->setText(QApplication::translate("MainWindow", "J5", Q_NULLPTR));
         j5_up->setText(QApplication::translate("MainWindow", "+", Q_NULLPTR));
-        label->setText(QApplication::translate("MainWindow", "Set G-code file:", Q_NULLPTR));
+        label->setText(QApplication::translate("MainWindow", "Open GCODE file:", Q_NULLPTR));
         openFile->setText(QApplication::translate("MainWindow", "Open file", Q_NULLPTR));
         pushButton_prevStep->setText(QApplication::translate("MainWindow", "Prev", Q_NULLPTR));
         pushButton_Stop->setText(QApplication::translate("MainWindow", "Stop", Q_NULLPTR));

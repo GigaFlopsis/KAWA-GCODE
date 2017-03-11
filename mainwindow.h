@@ -21,13 +21,50 @@ public:
 private slots:
 
     void on_SPEED_editingFinished();
-    void on_pushButton_play_clicked();
-    void on_pushButton_8_clicked();
     void on_openFile_clicked();
     void on_scanCom_clicked();
     void on_connectButton_clicked();
     void on_SPEED_valueChanged(const QString &arg1);
     void on_pushButton_YUp_clicked();
+
+    void on_pushButton_YDown_clicked();
+
+    void on_pushButton_XDown_clicked();
+
+    void on_pushButton_XUp_clicked();
+
+    void on_pushButton_ZDown_clicked();
+
+    void on_pushButton_ZUp_clicked();
+
+    void on_reset_clicked();
+
+    void on_resetError_clicked();
+
+
+    void on_j1_up_clicked();
+
+    void on_j1_down_clicked();
+
+    void on_j2_up_clicked();
+
+    void on_j2_down_clicked();
+
+    void on_j3_up_clicked();
+
+    void on_j3_down_clicked();
+
+    void on_j4_up_clicked();
+
+    void on_j4_down_clicked();
+
+    void on_j5_up_clicked();
+
+    void on_j5_down_clicked();
+
+    void on_j6_up_clicked();
+
+    void on_j6_down_clicked();
 
 signals:
     void savesettings(QString name, int baudrate, int DataBits, int Parity, int StopBits, int FlowControl);
@@ -38,7 +75,6 @@ signals:
 public slots:
     void on_textOpenFile_textEdited(const QString &arg1);
     void on_sendToTerminalButton_clicked();
-    void on_pushButton_clicked();
     void printToTerminal(const QString &arg1);
     void off_connectButton_state();
 private:

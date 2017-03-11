@@ -1,5 +1,4 @@
 #include "port.h"
-#include <qdebug.h>
 
 Port::Port(QObject *parent) :
     QObject(parent)
@@ -14,7 +13,7 @@ Port::~Port()
 
 void Port :: process_Port(){
 
-    qDebug("Hello World in Thread!");
+    qDebug("Starting thread port");
     connect(&thisPort,SIGNAL(error(QSerialPort::SerialPortError)), this, SLOT(handleError(QSerialPort::SerialPortError)));
     connect(&thisPort, SIGNAL(readyRead()),this,SLOT(ReadInPort()));
 }
@@ -58,7 +57,7 @@ void Port::handleError(QSerialPort::SerialPortError error)//
         DisconnectPort();
         emit disconnect();
     }
-}//
+}
 
 
 void  Port::DisconnectPort(){
@@ -68,15 +67,16 @@ void  Port::DisconnectPort(){
     }
 }
 
+//Writed to port
 void Port :: WriteToPort(QByteArray data){
     //qDebug() << "WriteToPort: " + data;
     if(thisPort.isOpen()){
         thisPort.write(data+'\r');
     }
 }
-//
+//reading in port
 void Port :: ReadInPort(){
-    QByteArray data;    
+    QByteArray data;
     data.append(thisPort.readAll());
     emit outPort(data);
 }
