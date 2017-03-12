@@ -18,9 +18,12 @@ public:
     explicit ProgramRun(QObject *parent = 0);
     ~ProgramRun();
 
+    enum setOriginStep {reset, here_pose, enter_pos1,enter_pos2, set_base, change_base, enter_base1,enter_base2};
     int step = 0;
+    int stepMax = 0;
     bool play = true;
     bool continueMove = true;
+    bool response = true;
 
 protected:
    QList<paramPoint> posList;
@@ -39,9 +42,14 @@ public slots:
     void PauseProgram();
     void StopProgram();
     void StartProgram(const QList<paramPoint> &posList);
+    void SetOrigin();
+    void setResporse();
+    void LengtCmd(int i);
 
 private:
     QByteArray SendMove(paramPoint data);
+
+
 };
 
 #endif // PROGRAMRUN_H

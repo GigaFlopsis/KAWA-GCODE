@@ -4,7 +4,6 @@
 #include <QTextStream>
 #include "port.h"
 #include "QStringList"
-#include "QString"
 #include <QList>
 
 
@@ -13,20 +12,6 @@ GParser::GParser(QObject *parent) : QObject(parent)
 }
 
 
-void GParser::Debug(QString &text)
-{
-    char* ch = text.toLatin1().data();
-    if(ch[0] == '(')
-    {
-        qDebug() << "This comment";
-        return;
-    }
-
-    QStringList list = text.split(" ");
-    //qDebug() << list;
-    paramPoint point =  ParseParam(list);
-    qDebug() << "X: " << point.x << "Y: " << point.y << "Z: " << point.z;
-}
 
 //parsing line of file to paramPoint
 paramPoint GParser::ParseParam(QStringList line)
@@ -91,7 +76,6 @@ void GParser::ParseCmd(const QString &arg1)
 void GParser::ClearList()
 {
     posList.clear();
-    qDebug() << "clear: " <<posList.length();
 }
 
 
@@ -128,10 +112,19 @@ void GParser::ParsingFile(QStringList data)
             ChangeEmpyParam(currentPoint, posList.at(i-k-1));
         }
 
+        // cout in command window
+        QString cmd = "G:" + QString::number(currentPoint.g,'d');
+                cmd += "    X:" + QString::number(currentPoint.x,'f',3);
+                cmd += "    Y:" + QString::number(currentPoint.y,'f',3);
+                cmd += "    Z:" + QString::number(currentPoint.z,'f',3);
+                cmd += "    J:" + QString::number(currentPoint.j,'f',3);
+                cmd += "    I:" + QString::number(currentPoint.i,'f',3);
+        emit CoutList(cmd);
         posList.append(currentPoint);
     }
     k = 0;
-    qDebug() << "list size" << posList.length();
+    //cout lenght
+    emit fileLengt(posList.length());
 }
 
 // changing empty pram to prev param
@@ -158,7 +151,6 @@ void GParser::SetList()
 {
     if(posList.length() != 0)
     {
-        emit fileLengt(posList.length());
         emit filePos(posList);
     }
     else

@@ -491,8 +491,23 @@
        </item>
        <item>
         <widget class="QProgressBar" name="progressBar">
+         <property name="maximum">
+          <number>0</number>
+         </property>
          <property name="value">
-          <number>5</number>
+          <number>0</number>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+         <property name="invertedAppearance">
+          <bool>false</bool>
+         </property>
+         <property name="textDirection">
+          <enum>QProgressBar::BottomToTop</enum>
+         </property>
+         <property name="format">
+          <string>%v/%m (%p%)</string>
          </property>
         </widget>
        </item>
@@ -544,6 +559,12 @@ p, li { white-space: pre-wrap; }
          </property>
          <property name="text">
           <string/>
+         </property>
+         <property name="maxLength">
+          <number>150</number>
+         </property>
+         <property name="clearButtonEnabled">
+          <bool>true</bool>
          </property>
         </widget>
        </item>
@@ -924,6 +945,17 @@ p, li { white-space: pre-wrap; }
    </widget>
    <addaction name="menuKAWA_GCODE"/>
   </widget>
+  <action name="actionSend">
+   <property name="text">
+    <string>Send</string>
+   </property>
+   <property name="toolTip">
+    <string>Send command</string>
+   </property>
+   <property name="shortcut">
+    <string>Return</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>

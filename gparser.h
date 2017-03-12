@@ -30,7 +30,6 @@ public:
     QList<paramPoint> posList;
     explicit GParser(QObject *parent = 0);
     enum cmd { complite, error, maxRange, finish, comment};
-    void Debug(QString &arg1); //for test
 
 signals:
     cmdComplite();
@@ -40,6 +39,7 @@ signals:
     cmdComment();
     filePos(QList<paramPoint> List);
     fileLengt(int line);
+    void CoutList(QString data);
 public slots:
     void ParseCmd(const QString &arg1);
     void ParsingFile(QStringList data);
@@ -48,8 +48,7 @@ public slots:
 private:
     paramPoint ParseParam(QStringList list); //set parsing line file
     void ChangeEmpyParam(paramPoint &targetPos, paramPoint currentPos);
+    void ParseListToString();
 };
-
-Q_DECLARE_METATYPE(paramPoint);
 
 #endif // GPARSER_H

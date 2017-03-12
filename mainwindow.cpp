@@ -1,21 +1,12 @@
 #include "mainwindow.h"
-#include <QMessageBox>
-#include <QString>
-#include <QDesktopWidget>
-#include <QDesktopWidget>
-#include <QScreen>
-#include <QMessageBox>
-#include <QMetaEnum>
-#include <unistd.h>
-#include <errno.h>
 #include "ui_mainwindow.h"
-#include <QThread>
-#include <QDebug>
 #include <QFileDialog>
-#include <gparser.h>
-#include "programrun.h"
 #include <QList>
 #include <QMetaType>
+#include <QDebug>
+#include <QThread>
+#include "gparser.h"
+#include "programrun.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -41,6 +32,11 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(gparse,SIGNAL(filePos(QList<paramPoint>)),RunMove,SLOT(StartProgram(QList<paramPoint>)));
     connect(ui->pushButton_pause,SIGNAL(pressed()),RunMove,SLOT(PlayMove()),Qt::DirectConnection);      // pause move
     connect(ui->pushButton_Stop,SIGNAL(pressed()),RunMove,SLOT(StopProgram()),Qt::DirectConnection);    // stop move
+    connect(ui->setOrigin,SIGNAL(pressed()),RunMove,SLOT(SetOrigin()));                                 // set origin
+    connect(PortNew, SIGNAL(GetStart()), RunMove, SLOT(setResporse()),Qt::DirectConnection);       // if resive in port
+    connect(ui->pushButton_pause,SIGNAL(pressed()),RunMove,SLOT(setResporse()),Qt::DirectConnection);      // for test move
+
+
 
     connect(gparse,SIGNAL(cmdComplite()),RunMove,SLOT(PlayMove()),Qt::DirectConnection);                //next pos if complide movement
     connect(RunMove,SIGNAL(Move(QByteArray)),PortNew,SLOT(WriteToPort(QByteArray)));                    //print movement to port
@@ -64,9 +60,21 @@ MainWindow::MainWindow(QWidget *parent) :
     //parsing data
     connect(PortNew, SIGNAL(outPort(QString)),gparse,SLOT(ParseCmd(QString)));                          //parsig send data
     connect(this, SIGNAL(FileData(QStringList)),gparse,SLOT(ParsingFile(QStringList)));                 //send file to parsing
+    connect(gparse, SIGNAL(CoutList(QString)),this,SLOT(on_textOpenFile_textEdited(QString)));                 //send file to parsing
 
     thread_Port->start();
     thread_Move->start();
+
+    //progress bar
+    connect(gparse, SIGNAL(fileLengt(int)),ui->progressBar,SLOT(setMaximum(int)));                 //set maximum in progress bar
+    connect(RunMove, SIGNAL(getStep(int)),ui->progressBar,SLOT(setValue(int)));                 //set maximum in progress bar
+    connect(gparse, SIGNAL(fileLengt(int)),RunMove,SLOT(LengtCmd(int)));                 //set maximum in progress bar
+
+    //move button
+    connect(ui->pushButton_nextStep, SIGNAL(pressed()),RunMove,SLOT(nextStep()));                 //set stap to right
+    connect(ui->pushButton_prevStep, SIGNAL(pressed()),RunMove,SLOT(prevStep()));                 //set stap to right
+    connect(ui->actionSend, SIGNAL(changed()),ui->sendToTerminalButton,SLOT(click()));                 //set stap to right
+
 }
 
 MainWindow::~MainWindow()
@@ -94,6 +102,7 @@ void MainWindow::on_openFile_clicked()
            tr("Open G-code file"), "",
            tr("G-code (*.gcode);;All Files (*)"));
     ui->textOpenFile->setText(fileName);
+    ui->listCommand->clear();
 
     QFile inputFile(fileName);
          inputFile.open(QIODevice::ReadOnly);
@@ -102,16 +111,14 @@ void MainWindow::on_openFile_clicked()
          inputFile.close();
          QStringList fileToline = file.split('\n');
 
-         // file ыутв in the line for later parsing
+         // set line for later parsing
          emit FileData(fileToline);
-         ui->terminal->append(QString::number(fileToline.length()));
-    on_textOpenFile_textEdited(file);
 }
 
 //cout file path
 void MainWindow::on_textOpenFile_textEdited(const QString &arg1)
 {
-    ui->listCommand->setText(arg1);
+    ui->listCommand->append(arg1);
 
 }
 

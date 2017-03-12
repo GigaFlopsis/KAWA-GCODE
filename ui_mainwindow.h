@@ -39,6 +39,7 @@ QT_BEGIN_NAMESPACE
 class Ui_MainWindow
 {
 public:
+    QAction *actionSend;
     QWidget *centralWidget;
     QPushButton *pushButton_YUp;
     QPushButton *pushButton_ZDown;
@@ -113,6 +114,9 @@ public:
         MainWindow->resize(800, 600);
         MainWindow->setMinimumSize(QSize(800, 600));
         MainWindow->setMaximumSize(QSize(800, 600));
+        actionSend = new QAction(MainWindow);
+        actionSend->setObjectName(QStringLiteral("actionSend"));
+        actionSend->setCheckable(true);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         pushButton_YUp = new QPushButton(centralWidget);
@@ -276,7 +280,11 @@ public:
 
         progressBar = new QProgressBar(layoutWidget);
         progressBar->setObjectName(QStringLiteral("progressBar"));
-        progressBar->setValue(5);
+        progressBar->setMaximum(0);
+        progressBar->setValue(0);
+        progressBar->setAlignment(Qt::AlignCenter);
+        progressBar->setInvertedAppearance(false);
+        progressBar->setTextDirection(QProgressBar::BottomToTop);
 
         verticalLayout->addWidget(progressBar);
 
@@ -479,6 +487,11 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", Q_NULLPTR));
+        actionSend->setText(QApplication::translate("MainWindow", "Send", Q_NULLPTR));
+#ifndef QT_NO_TOOLTIP
+        actionSend->setToolTip(QApplication::translate("MainWindow", "Send command", Q_NULLPTR));
+#endif // QT_NO_TOOLTIP
+        actionSend->setShortcut(QApplication::translate("MainWindow", "Return, Q", Q_NULLPTR));
         pushButton_YUp->setText(QApplication::translate("MainWindow", "Y+", Q_NULLPTR));
         pushButton_ZDown->setText(QApplication::translate("MainWindow", "Z -", Q_NULLPTR));
         pushButton_ZUp->setText(QApplication::translate("MainWindow", "Z +", Q_NULLPTR));
@@ -501,6 +514,7 @@ public:
         pushButton_play->setText(QApplication::translate("MainWindow", "Play", Q_NULLPTR));
         pushButton_pause->setText(QApplication::translate("MainWindow", "Pause", Q_NULLPTR));
         pushButton_nextStep->setText(QApplication::translate("MainWindow", "Next", Q_NULLPTR));
+        progressBar->setFormat(QApplication::translate("MainWindow", "%v/%m (%p%)", Q_NULLPTR));
         listCommand->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"

@@ -14,14 +14,29 @@ void ProgramRun::setStep(int num)
     step = num;
     getStep(step);
 }
+
+void ProgramRun::LengtCmd(int i)
+{
+    stepMax = i;
+    step = 0;
+    getStep(0);
+}
+
 void ProgramRun::nextStep()
 {
     step++;
+    if(step > stepMax)
+    {
+        play = false;
+        step = stepMax;
+    }
     getStep(step);
 }
 void ProgramRun::prevStep()
 {
     step--;
+    if(step < 0)
+        step = 0;
     getStep(step);
 }
 void ProgramRun::PlayMove()
@@ -36,6 +51,7 @@ void ProgramRun::StopProgram()
 {
     step = 0;
     play = false;
+    getStep(step);
 }
 
 //start movement
@@ -43,12 +59,12 @@ void ProgramRun::StartProgram(const QList<paramPoint> &posList)
 {
     play = true;
     continueMove = true;
-    while(play && step <= posList.length())
+    while(play)
     {
         //wait until the response
         if(continueMove)
         {
-            if(posList.isEmpty() || step > posList.length())
+            if(posList.isEmpty())
             {
                qDebug() << "Empty list";
                play = false;
@@ -63,6 +79,69 @@ void ProgramRun::StartProgram(const QList<paramPoint> &posList)
     }
     qDebug() << "FinishMove";
     emit FinishMove();
+}
+
+void ProgramRun::setResporse()
+{
+   response = true;
+}
+
+//set origin pos
+void ProgramRun::SetOrigin()
+{
+  bool exit = false;
+  setOriginStep stage = setOriginStep::reset;
+  QString cmd = "";
+  emit MovePrint("Set origin init:");
+  while(!exit)
+  {
+    if(response){
+      switch (stage) {
+      case  setOriginStep::reset:
+          cmd ="reset";
+          response = false;
+          emit Move(cmd.toLocal8Bit());
+          emit MovePrint(cmd);
+          stage = setOriginStep::here_pose;
+          break;
+      case  setOriginStep::here_pose:
+          cmd ="here a";
+          response = false;
+          emit Move(cmd.toLocal8Bit());
+          emit MovePrint(cmd);
+         stage = setOriginStep::enter_pos1;
+          break;
+      case  setOriginStep::enter_pos1:
+          cmd =",,,0,0,0";
+          response = false;
+          emit Move(cmd.toLocal8Bit());
+          emit MovePrint(cmd);
+          stage = setOriginStep::enter_pos2;
+          break;
+      case  setOriginStep::enter_pos2:
+          cmd ="";
+          response = false;
+          emit Move(cmd.toLocal8Bit());
+          emit MovePrint(cmd);
+          stage = setOriginStep::set_base;
+          break;
+      case  setOriginStep::set_base:
+          cmd ="base a";
+          response = false;
+          emit Move(cmd.toLocal8Bit());
+          emit MovePrint(cmd);
+          stage = setOriginStep::enter_base1;
+          break;
+      case  setOriginStep::enter_base1:
+          cmd ="";
+          exit = true;
+          emit Move(cmd.toLocal8Bit());
+          emit MovePrint(cmd);
+          emit MovePrint("Set origin complited");
+          break;
+      }
+    }
+  }
 }
 
 //parsing cmd to port

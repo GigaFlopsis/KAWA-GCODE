@@ -79,5 +79,6 @@ void Port :: ReadInPort(){
     QByteArray data;
     data.append(thisPort.readAll());
     emit outPort(data);
+    emit GetStart();
 }
 
