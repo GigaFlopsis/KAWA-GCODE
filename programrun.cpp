@@ -12,40 +12,41 @@ ProgramRun::~ProgramRun()
 void ProgramRun::setStep(int num)
 {
     step = num;
-    getStep(step);
+    getStep(step+1);
 }
 
 void ProgramRun::LengtCmd(int i)
 {
     stepMax = i;
     step = 0;
-    getStep(0);
+    getStep(0+1);
 }
 
 void ProgramRun::nextStep()
 {
     step++;
-    if(step > stepMax)
+    if(step >= stepMax)
     {
         play = false;
         step = stepMax;
     }
-    getStep(step);
+    getStep(step+1);
 }
 void ProgramRun::prevStep()
 {
     step--;
     if(step < 0)
         step = 0;
-    getStep(step);
+    getStep(step+1);
 }
 void ProgramRun::PlayMove()
 {
     continueMove = true;
+    pause = false;
 }
 void ProgramRun::PauseProgram()
 {
-    continueMove = false;
+    pause = true;
 }
 void ProgramRun::StopProgram()
 {
@@ -62,7 +63,7 @@ void ProgramRun::StartProgram(const QList<paramPoint> &posList)
     while(play)
     {
         //wait until the response
-        if(continueMove)
+        if(continueMove && !pause)
         {
             if(posList.isEmpty())
             {
@@ -71,7 +72,7 @@ void ProgramRun::StartProgram(const QList<paramPoint> &posList)
                break;
             }
             continueMove = false;
-            QByteArray cmd = SendMove(posList.at(step));
+            QByteArray cmd = SendMove(posList.at(step),true);
             emit Move(cmd);
             emit MovePrint(cmd);
             nextStep();
@@ -159,12 +160,19 @@ void ProgramRun::SetOrigin()
 }
 
 //parsing cmd to port
-QByteArray ProgramRun::SendMove(paramPoint data)
+QByteArray ProgramRun::SendMove(paramPoint data, bool realTime)
 {
     if(data.g == 0 || data.g == 1) //line move
     {
         QString cmd;
-        cmd = "DO LMOVE SHIFT(a BY ";
+        if(realTime)
+        {
+            cmd = "DO ";
+        }
+        else {
+            cmd = "";
+        }
+        cmd += "LMOVE SHIFT(a BY ";
         cmd += QString::number(data.x,'f',3) + ",";
         cmd += QString::number(data.y,'f',3) + ",";
         cmd += QString::number(data.z,'f',3) + ")";
@@ -173,10 +181,42 @@ QByteArray ProgramRun::SendMove(paramPoint data)
     if(data.g == 2 || data.g == 3) //join move
     {
         QString cmd;
-        cmd = "DO JMOVE SHIFT(a BY ";
+        if(realTime)
+        {
+            cmd = "DO ";
+        }
+        else {
+            cmd = "";
+        }
+        cmd = "JMOVE SHIFT(a BY ";
         cmd += QString::number(data.x,'f',3) + ",";
         cmd += QString::number(data.y,'f',3) + ",";
         cmd += QString::number(data.z,'f',3) + ")";
         return cmd.toLocal8Bit();
     }
+}
+
+void ProgramRun::WriteToFile(const QList<paramPoint> &posList)
+{
+    qDebug() << "create file" << endl;
+    play = true;
+    QFile f("move.as");
+    if (f.open(QIODevice::WriteOnly)) {
+    while(play)
+    {
+            if(posList.isEmpty())
+            {
+               qDebug() << "Empty list";
+               play = false;
+               break;
+            }
+
+            QByteArray cmd = SendMove(posList.at(step),false);
+            f.write(cmd + "\n");
+            nextStep();
+    }
+    f.close();
+    emit FinishMove();
+    }
+qDebug() << "FinishMove";
 }

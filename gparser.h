@@ -38,6 +38,7 @@ signals:
     cmdResponse();
     cmdComment();
     filePos(QList<paramPoint> List);
+    filePosforLoad(QList<paramPoint> List);
     fileLengt(int line);
     void CoutList(QString data);
 public slots:
@@ -45,6 +46,7 @@ public slots:
     void ParsingFile(QStringList data);
     void ClearList();
     void SetList();
+    void SetListforFile();
 private:
     paramPoint ParseParam(QStringList list); //set parsing line file
     void ChangeEmpyParam(paramPoint &targetPos, paramPoint currentPos);

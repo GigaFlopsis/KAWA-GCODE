@@ -22,8 +22,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_ProgramRun_t {
-    QByteArrayData data[24];
-    char stringdata0[210];
+    QByteArrayData data[25];
+    char stringdata0[222];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -55,7 +55,8 @@ QT_MOC_LITERAL(19, 169, 7), // "posList"
 QT_MOC_LITERAL(20, 177, 9), // "SetOrigin"
 QT_MOC_LITERAL(21, 187, 11), // "setResporse"
 QT_MOC_LITERAL(22, 199, 8), // "LengtCmd"
-QT_MOC_LITERAL(23, 208, 1) // "i"
+QT_MOC_LITERAL(23, 208, 1), // "i"
+QT_MOC_LITERAL(24, 210, 11) // "WriteToFile"
 
     },
     "ProgramRun\0NextMove\0\0StopMove\0Move\0"
@@ -63,7 +64,7 @@ QT_MOC_LITERAL(23, 208, 1) // "i"
     "step\0setStep\0nextStep\0prevStep\0PlayMove\0"
     "PauseProgram\0StopProgram\0StartProgram\0"
     "QList<paramPoint>\0posList\0SetOrigin\0"
-    "setResporse\0LengtCmd\0i"
+    "setResporse\0LengtCmd\0i\0WriteToFile"
 };
 #undef QT_MOC_LITERAL
 
@@ -73,7 +74,7 @@ static const uint qt_meta_data_ProgramRun[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-      16,   14, // methods
+      17,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -81,24 +82,25 @@ static const uint qt_meta_data_ProgramRun[] = {
        6,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    0,   94,    2, 0x06 /* Public */,
-       3,    0,   95,    2, 0x06 /* Public */,
-       4,    1,   96,    2, 0x06 /* Public */,
-       6,    0,   99,    2, 0x06 /* Public */,
-       7,    1,  100,    2, 0x06 /* Public */,
-       9,    1,  103,    2, 0x06 /* Public */,
+       1,    0,   99,    2, 0x06 /* Public */,
+       3,    0,  100,    2, 0x06 /* Public */,
+       4,    1,  101,    2, 0x06 /* Public */,
+       6,    0,  104,    2, 0x06 /* Public */,
+       7,    1,  105,    2, 0x06 /* Public */,
+       9,    1,  108,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-      11,    1,  106,    2, 0x0a /* Public */,
-      12,    0,  109,    2, 0x0a /* Public */,
-      13,    0,  110,    2, 0x0a /* Public */,
-      14,    0,  111,    2, 0x0a /* Public */,
-      15,    0,  112,    2, 0x0a /* Public */,
-      16,    0,  113,    2, 0x0a /* Public */,
-      17,    1,  114,    2, 0x0a /* Public */,
-      20,    0,  117,    2, 0x0a /* Public */,
-      21,    0,  118,    2, 0x0a /* Public */,
-      22,    1,  119,    2, 0x0a /* Public */,
+      11,    1,  111,    2, 0x0a /* Public */,
+      12,    0,  114,    2, 0x0a /* Public */,
+      13,    0,  115,    2, 0x0a /* Public */,
+      14,    0,  116,    2, 0x0a /* Public */,
+      15,    0,  117,    2, 0x0a /* Public */,
+      16,    0,  118,    2, 0x0a /* Public */,
+      17,    1,  119,    2, 0x0a /* Public */,
+      20,    0,  122,    2, 0x0a /* Public */,
+      21,    0,  123,    2, 0x0a /* Public */,
+      22,    1,  124,    2, 0x0a /* Public */,
+      24,    1,  127,    2, 0x0a /* Public */,
 
  // signals: parameters
     QMetaType::Int,
@@ -119,6 +121,7 @@ static const uint qt_meta_data_ProgramRun[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void, QMetaType::Int,   23,
+    QMetaType::Void, 0x80000000 | 18,   19,
 
        0        // eod
 };
@@ -151,6 +154,7 @@ void ProgramRun::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 13: _t->SetOrigin(); break;
         case 14: _t->setResporse(); break;
         case 15: _t->LengtCmd((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 16: _t->WriteToFile((*reinterpret_cast< const QList<paramPoint>(*)>(_a[1]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -226,13 +230,13 @@ int ProgramRun::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 16)
+        if (_id < 17)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 16;
+        _id -= 17;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 16)
+        if (_id < 17)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 16;
+        _id -= 17;
     }
     return _id;
 }

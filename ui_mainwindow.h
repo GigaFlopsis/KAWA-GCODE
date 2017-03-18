@@ -58,6 +58,7 @@ public:
     QPushButton *pushButton_play;
     QPushButton *pushButton_pause;
     QPushButton *pushButton_nextStep;
+    QPushButton *loadTofileButton;
     QSpacerItem *verticalSpacer_2;
     QProgressBar *progressBar;
     QTextEdit *listCommand;
@@ -82,7 +83,7 @@ public:
     QSplitter *splitter_3;
     QPushButton *scanCom;
     QPushButton *connectButton;
-    QWidget *widget;
+    QWidget *layoutWidget1;
     QGridLayout *gridLayout;
     QLabel *label_6;
     QLabel *label_4;
@@ -197,6 +198,12 @@ public:
 
 
         verticalLayout->addLayout(horizontalLayout_2);
+
+        loadTofileButton = new QPushButton(layoutWidget);
+        loadTofileButton->setObjectName(QStringLiteral("loadTofileButton"));
+        loadTofileButton->setAutoDefault(false);
+
+        verticalLayout->addWidget(loadTofileButton);
 
         verticalSpacer_2 = new QSpacerItem(20, 46, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
@@ -321,15 +328,15 @@ public:
         connectButton->setObjectName(QStringLiteral("connectButton"));
         splitter_3->addWidget(connectButton);
         splitter_4->addWidget(splitter_3);
-        widget = new QWidget(centralWidget);
-        widget->setObjectName(QStringLiteral("widget"));
-        widget->setGeometry(QRect(460, 70, 331, 101));
-        gridLayout = new QGridLayout(widget);
+        layoutWidget1 = new QWidget(centralWidget);
+        layoutWidget1->setObjectName(QStringLiteral("layoutWidget1"));
+        layoutWidget1->setGeometry(QRect(460, 70, 331, 101));
+        gridLayout = new QGridLayout(layoutWidget1);
         gridLayout->setSpacing(6);
         gridLayout->setContentsMargins(11, 11, 11, 11);
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
         gridLayout->setContentsMargins(0, 0, 0, 0);
-        label_6 = new QLabel(widget);
+        label_6 = new QLabel(layoutWidget1);
         label_6->setObjectName(QStringLiteral("label_6"));
         label_6->setMinimumSize(QSize(29, 22));
         label_6->setFont(font);
@@ -342,7 +349,7 @@ public:
 
         gridLayout->addWidget(label_6, 0, 0, 1, 1);
 
-        label_4 = new QLabel(widget);
+        label_4 = new QLabel(layoutWidget1);
         label_4->setObjectName(QStringLiteral("label_4"));
         label_4->setMinimumSize(QSize(29, 22));
         label_4->setFont(font);
@@ -355,7 +362,7 @@ public:
 
         gridLayout->addWidget(label_4, 0, 1, 1, 1);
 
-        label_2 = new QLabel(widget);
+        label_2 = new QLabel(layoutWidget1);
         label_2->setObjectName(QStringLiteral("label_2"));
         label_2->setMinimumSize(QSize(29, 22));
         label_2->setFont(font);
@@ -368,7 +375,7 @@ public:
 
         gridLayout->addWidget(label_2, 0, 2, 1, 1);
 
-        label_5 = new QLabel(widget);
+        label_5 = new QLabel(layoutWidget1);
         label_5->setObjectName(QStringLiteral("label_5"));
         label_5->setMinimumSize(QSize(29, 22));
         label_5->setFont(font);
@@ -381,7 +388,7 @@ public:
 
         gridLayout->addWidget(label_5, 0, 3, 1, 1);
 
-        label_7 = new QLabel(widget);
+        label_7 = new QLabel(layoutWidget1);
         label_7->setObjectName(QStringLiteral("label_7"));
         label_7->setMinimumSize(QSize(29, 22));
         label_7->setFont(font);
@@ -394,7 +401,7 @@ public:
 
         gridLayout->addWidget(label_7, 0, 4, 1, 1);
 
-        label_8 = new QLabel(widget);
+        label_8 = new QLabel(layoutWidget1);
         label_8->setObjectName(QStringLiteral("label_8"));
         label_8->setMinimumSize(QSize(29, 22));
         label_8->setFont(font);
@@ -407,104 +414,87 @@ public:
 
         gridLayout->addWidget(label_8, 0, 5, 1, 1);
 
-        j1_up = new QPushButton(widget);
+        j1_up = new QPushButton(layoutWidget1);
         j1_up->setObjectName(QStringLiteral("j1_up"));
         j1_up->setMinimumSize(QSize(27, 23));
 
         gridLayout->addWidget(j1_up, 1, 0, 1, 1);
 
-        j2_up = new QPushButton(widget);
+        j2_up = new QPushButton(layoutWidget1);
         j2_up->setObjectName(QStringLiteral("j2_up"));
         j2_up->setMinimumSize(QSize(27, 23));
 
         gridLayout->addWidget(j2_up, 1, 1, 1, 1);
 
-        j3_up = new QPushButton(widget);
+        j3_up = new QPushButton(layoutWidget1);
         j3_up->setObjectName(QStringLiteral("j3_up"));
         j3_up->setMinimumSize(QSize(27, 23));
 
         gridLayout->addWidget(j3_up, 1, 2, 1, 1);
 
-        j4_up = new QPushButton(widget);
+        j4_up = new QPushButton(layoutWidget1);
         j4_up->setObjectName(QStringLiteral("j4_up"));
         j4_up->setMinimumSize(QSize(27, 23));
 
         gridLayout->addWidget(j4_up, 1, 3, 1, 1);
 
-        j5_up = new QPushButton(widget);
+        j5_up = new QPushButton(layoutWidget1);
         j5_up->setObjectName(QStringLiteral("j5_up"));
         j5_up->setMinimumSize(QSize(27, 23));
 
         gridLayout->addWidget(j5_up, 1, 4, 1, 1);
 
-        j6_up = new QPushButton(widget);
+        j6_up = new QPushButton(layoutWidget1);
         j6_up->setObjectName(QStringLiteral("j6_up"));
         j6_up->setMinimumSize(QSize(27, 23));
 
         gridLayout->addWidget(j6_up, 1, 5, 1, 1);
 
-        j1_down = new QPushButton(widget);
+        j1_down = new QPushButton(layoutWidget1);
         j1_down->setObjectName(QStringLiteral("j1_down"));
         j1_down->setMinimumSize(QSize(27, 23));
 
         gridLayout->addWidget(j1_down, 2, 0, 1, 1);
 
-        j2_down = new QPushButton(widget);
+        j2_down = new QPushButton(layoutWidget1);
         j2_down->setObjectName(QStringLiteral("j2_down"));
         j2_down->setMinimumSize(QSize(27, 23));
 
         gridLayout->addWidget(j2_down, 2, 1, 1, 1);
 
-        j3_down = new QPushButton(widget);
+        j3_down = new QPushButton(layoutWidget1);
         j3_down->setObjectName(QStringLiteral("j3_down"));
         j3_down->setMinimumSize(QSize(27, 23));
 
         gridLayout->addWidget(j3_down, 2, 2, 1, 1);
 
-        j4_down = new QPushButton(widget);
+        j4_down = new QPushButton(layoutWidget1);
         j4_down->setObjectName(QStringLiteral("j4_down"));
         j4_down->setMinimumSize(QSize(27, 23));
 
         gridLayout->addWidget(j4_down, 2, 3, 1, 1);
 
-        j5_down = new QPushButton(widget);
+        j5_down = new QPushButton(layoutWidget1);
         j5_down->setObjectName(QStringLiteral("j5_down"));
         j5_down->setMinimumSize(QSize(27, 23));
 
         gridLayout->addWidget(j5_down, 2, 4, 1, 1);
 
-        j6_down = new QPushButton(widget);
+        j6_down = new QPushButton(layoutWidget1);
         j6_down->setObjectName(QStringLiteral("j6_down"));
         j6_down->setMinimumSize(QSize(27, 23));
 
         gridLayout->addWidget(j6_down, 2, 5, 1, 1);
 
         MainWindow->setCentralWidget(centralWidget);
+        layoutWidget->raise();
         splitter->raise();
-        label_6->raise();
-        label_4->raise();
-        j2_down->raise();
-        j1_up->raise();
-        j2_up->raise();
-        j1_down->raise();
         splitter_6->raise();
         splitter_4->raise();
         pushButton_YUp->raise();
         pushButton_ZDown->raise();
         pushButton_ZUp->raise();
-        j3_up->raise();
-        j3_down->raise();
-        label_2->raise();
         layoutWidget->raise();
-        j4_down->raise();
-        j6_up->raise();
-        label_5->raise();
-        j4_up->raise();
-        j6_down->raise();
-        label_8->raise();
-        j5_down->raise();
-        label_7->raise();
-        j5_up->raise();
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
         MainWindow->addToolBar(Qt::TopToolBarArea, mainToolBar);
@@ -513,7 +503,7 @@ public:
         MainWindow->setStatusBar(statusBar);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 800, 24));
+        menuBar->setGeometry(QRect(0, 0, 800, 19));
         menuKAWA_GCODE = new QMenu(menuBar);
         menuKAWA_GCODE->setObjectName(QStringLiteral("menuKAWA_GCODE"));
         MainWindow->setMenuBar(menuBar);
@@ -545,16 +535,17 @@ public:
         pushButton_play->setText(QApplication::translate("MainWindow", "Play", Q_NULLPTR));
         pushButton_pause->setText(QApplication::translate("MainWindow", "Pause", Q_NULLPTR));
         pushButton_nextStep->setText(QApplication::translate("MainWindow", "Next", Q_NULLPTR));
+        loadTofileButton->setText(QApplication::translate("MainWindow", "Load to file", Q_NULLPTR));
         progressBar->setFormat(QApplication::translate("MainWindow", "%v/%m (%p%)", Q_NULLPTR));
         listCommand->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'MS Shell Dlg 2'; font-size:8pt; font-weight:400; font-style:normal;\">\n"
+"</style></head><body style=\" font-family:'MS Shell Dlg 2'; font-size:8.1pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:7.8pt;\"><br /></p></body></html>", Q_NULLPTR));
         terminal->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'MS Shell Dlg 2'; font-size:8pt; font-weight:400; font-style:normal;\">\n"
+"</style></head><body style=\" font-family:'MS Shell Dlg 2'; font-size:8.1pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:7.8pt;\"><br /></p></body></html>", Q_NULLPTR));
         set_command->setText(QString());
         sendToTerminalButton->setText(QApplication::translate("MainWindow", "SEND", Q_NULLPTR));

@@ -40,10 +40,18 @@ MainWindow::MainWindow(QWidget *parent) :
       // start move
     connect(ui->pushButton_play,SIGNAL(pressed()),gparse,SLOT(SetList()));                              //get list point
     connect(gparse,SIGNAL(filePos(QList<paramPoint>)),RunMove,SLOT(StartProgram(QList<paramPoint>)));   //run programm
+
     connect(ui->pushButton_pause,SIGNAL(pressed()),RunMove,SLOT(PauseProgram()),Qt::DirectConnection);  // pause move
     connect(gparse,SIGNAL(cmdError()),RunMove,SLOT(PauseProgram()),Qt::DirectConnection);               // ERROR
     connect(ui->pushButton_Stop,SIGNAL(pressed()),RunMove,SLOT(StopProgram()),Qt::DirectConnection);    // stop move
     connect(gparse,SIGNAL(cmdComplite()),RunMove,SLOT(PlayMove()),Qt::DirectConnection);                //next pos if complide movement
+
+    //Stop move
+    connect(RunMove,SIGNAL(FinishMove()),RunMove,SLOT(StopProgram()),Qt::DirectConnection);             //stoping program
+
+    //load t file
+    connect(ui->loadTofileButton,SIGNAL(pressed()),gparse,SLOT(SetListforFile()));                              //get list point
+    connect(gparse,SIGNAL(filePosforLoad(QList<paramPoint>)),RunMove,SLOT(WriteToFile(QList<paramPoint>)),Qt::DirectConnection);
 
     connect(ui->setOrigin,SIGNAL(pressed()),RunMove,SLOT(SetOrigin()));                                 // set origin
     connect(PortNew, SIGNAL(GetStart()), RunMove, SLOT(setResporse()),Qt::DirectConnection);            // if resive in port

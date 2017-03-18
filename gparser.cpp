@@ -79,21 +79,26 @@ void GParser::ClearList()
 }
 
 
-void GParser::ParsingFile(QStringList data)
+void GParser::ParsingFile(QStringList dataLine)
 {
     ClearList();
 
-    int sizeLine = data.length();
-    QString dsa;
+    int sizeLine = dataLine.length();
+    QString data;
     for(int i = 0; i < sizeLine; i ++)
     {
+        data = dataLine.at(i);
         //if comments
-        if(data.at(i).startsWith("(") || data.at(i).startsWith("M") || data.at(i).startsWith("%"))
+        if(data.startsWith("(") ||
+                data.startsWith("M") ||
+                data.startsWith("%") ||
+                (data.length() < 2))
         {
             k++;
+            qDebug() << "continue" << endl;
             continue;
         }
-        QStringList splitLine = data.at(i).split(" ");
+        QStringList splitLine = dataLine.at(i).split(" ");
         paramPoint currentPoint =  ParseParam(splitLine);
         if(i-k == 0)
         {
@@ -152,7 +157,21 @@ void GParser::SetList()
 {
     if(posList.length() != 0)
     {
+        qDebug() << "send list\n";
         emit filePos(posList);
+    }
+    else
+    {
+        qDebug() << "zero cmd";
+    }
+}
+
+void GParser::SetListforFile()
+{
+    if(posList.length() != 0)
+    {
+        qDebug() << "send list\n";
+        emit filePosforLoad(posList);
     }
     else
     {

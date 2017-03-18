@@ -7,7 +7,7 @@
 #include "QString"
 #include "QByteArray"
 #include "QDebug"
-//#include <QMetaType>
+#include <QFile>
 
 //Q_DECLARE_METATYPE(QList<paramPoint>)
 
@@ -19,14 +19,18 @@ public:
     ~ProgramRun();
 
     enum setOriginStep {reset, here_pose, enter_pos1,enter_pos2, set_base, change_base, enter_base1,enter_base2,enter_pos3};
-    int step = 0;
+    int step = 0;     //spets cmd
     int stepMax = 0;
+
+    //flags
     bool play = true;
     bool continueMove = true;
     bool response = true;
+    bool pause = false;
 
 protected:
    QList<paramPoint> posList;
+
 signals:
     NextMove();
     StopMove();
@@ -34,6 +38,7 @@ signals:
     FinishMove();
     MovePrint(QString cmd);
     getStep(int step);
+
 public slots:
     void setStep(int step);
     void nextStep();
@@ -45,10 +50,9 @@ public slots:
     void SetOrigin();
     void setResporse();
     void LengtCmd(int i);
-
+    void WriteToFile(const QList<paramPoint> &posList);
 private:
-    QByteArray SendMove(paramPoint data);
-
+    QByteArray SendMove(paramPoint data,bool realTime);
 
 };
 
