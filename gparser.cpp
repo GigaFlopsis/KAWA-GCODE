@@ -88,7 +88,7 @@ void GParser::ParsingFile(QStringList data)
     for(int i = 0; i < sizeLine; i ++)
     {
         //if comments
-        if(data.at(i).startsWith("("))
+        if(data.at(i).startsWith("(") || data.at(i).startsWith("M") || data.at(i).startsWith("%"))
         {
             k++;
             continue;
@@ -113,7 +113,8 @@ void GParser::ParsingFile(QStringList data)
         }
 
         // cout in command window
-        QString cmd = "G:" + QString::number(currentPoint.g,'d');
+        QString cmd = QString::number(posList.length())+": ";
+                cmd += "     G:" + QString::number(currentPoint.g,'d');
                 cmd += "    X:" + QString::number(currentPoint.x,'f',3);
                 cmd += "    Y:" + QString::number(currentPoint.y,'f',3);
                 cmd += "    Z:" + QString::number(currentPoint.z,'f',3);

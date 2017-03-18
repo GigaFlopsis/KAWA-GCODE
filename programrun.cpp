@@ -134,6 +134,20 @@ void ProgramRun::SetOrigin()
           break;
       case  setOriginStep::enter_base1:
           cmd ="";
+          response = false;
+          emit Move(cmd.toLocal8Bit());
+          emit MovePrint(cmd);
+          stage = setOriginStep::enter_base2;
+          break;
+      case  setOriginStep::enter_base2:
+          cmd ="here a";
+          response = false;
+          emit Move(cmd.toLocal8Bit());
+          emit MovePrint(cmd);
+          stage = setOriginStep::enter_pos3;
+          break;
+      case  setOriginStep::enter_pos3:
+          cmd ="";
           exit = true;
           emit Move(cmd.toLocal8Bit());
           emit MovePrint(cmd);

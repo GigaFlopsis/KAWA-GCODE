@@ -18,7 +18,7 @@ public:
     explicit ProgramRun(QObject *parent = 0);
     ~ProgramRun();
 
-    enum setOriginStep {reset, here_pose, enter_pos1,enter_pos2, set_base, change_base, enter_base1,enter_base2};
+    enum setOriginStep {reset, here_pose, enter_pos1,enter_pos2, set_base, change_base, enter_base1,enter_base2,enter_pos3};
     int step = 0;
     int stepMax = 0;
     bool play = true;

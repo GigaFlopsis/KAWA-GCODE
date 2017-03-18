@@ -738,21 +738,6 @@ debug/mainwindow.o: mainwindow.cpp mainwindow.h \
 		S:/Soft/Qt5.8.0/5.8/mingw53_32/include/QtSerialPort/QSerialPortInfo \
 		S:/Soft/Qt5.8.0/5.8/mingw53_32/include/QtSerialPort/qserialportinfo.h \
 		S:/Soft/Qt5.8.0/5.8/mingw53_32/include/QtCore/QStringList \
-		S:/Soft/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QMessageBox \
-		S:/Soft/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qmessagebox.h \
-		S:/Soft/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qdialog.h \
-		S:/Soft/Qt5.8.0/5.8/mingw53_32/include/QtCore/QString \
-		S:/Soft/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QDesktopWidget \
-		S:/Soft/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qdesktopwidget.h \
-		S:/Soft/Qt5.8.0/5.8/mingw53_32/include/QtGui/QScreen \
-		S:/Soft/Qt5.8.0/5.8/mingw53_32/include/QtGui/qscreen.h \
-		S:/Soft/Qt5.8.0/5.8/mingw53_32/include/QtCore/QList \
-		S:/Soft/Qt5.8.0/5.8/mingw53_32/include/QtCore/QRect \
-		S:/Soft/Qt5.8.0/5.8/mingw53_32/include/QtCore/QSize \
-		S:/Soft/Qt5.8.0/5.8/mingw53_32/include/QtCore/QSizeF \
-		S:/Soft/Qt5.8.0/5.8/mingw53_32/include/QtGui/QTransform \
-		S:/Soft/Qt5.8.0/5.8/mingw53_32/include/QtCore/QMetaEnum \
-		S:/Soft/Qt5.8.0/5.8/mingw53_32/include/QtCore/qmetaobject.h \
 		ui_mainwindow.h \
 		S:/Soft/Qt5.8.0/5.8/mingw53_32/include/QtCore/QLocale \
 		S:/Soft/Qt5.8.0/5.8/mingw53_32/include/QtCore/QVariant \
@@ -763,6 +748,7 @@ debug/mainwindow.o: mainwindow.cpp mainwindow.h \
 		S:/Soft/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qapplication.h \
 		S:/Soft/Qt5.8.0/5.8/mingw53_32/include/QtCore/qcoreapplication.h \
 		S:/Soft/Qt5.8.0/5.8/mingw53_32/include/QtCore/qeventloop.h \
+		S:/Soft/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qdesktopwidget.h \
 		S:/Soft/Qt5.8.0/5.8/mingw53_32/include/QtGui/qguiapplication.h \
 		S:/Soft/Qt5.8.0/5.8/mingw53_32/include/QtGui/qinputmethod.h \
 		S:/Soft/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QButtonGroup \
@@ -829,18 +815,20 @@ debug/mainwindow.o: mainwindow.cpp mainwindow.h \
 		S:/Soft/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qtoolbar.h \
 		S:/Soft/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QVBoxLayout \
 		S:/Soft/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QWidget \
-		S:/Soft/Qt5.8.0/5.8/mingw53_32/include/QtCore/QThread \
-		S:/Soft/Qt5.8.0/5.8/mingw53_32/include/QtCore/qthread.h \
-		S:/Soft/Qt5.8.0/5.8/mingw53_32/include/QtCore/QDebug \
 		S:/Soft/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QFileDialog \
 		S:/Soft/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qfiledialog.h \
 		S:/Soft/Qt5.8.0/5.8/mingw53_32/include/QtCore/qdir.h \
 		S:/Soft/Qt5.8.0/5.8/mingw53_32/include/QtCore/qfileinfo.h \
-		gparser.h \
+		S:/Soft/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qdialog.h \
 		S:/Soft/Qt5.8.0/5.8/mingw53_32/include/QtGui/QList \
+		S:/Soft/Qt5.8.0/5.8/mingw53_32/include/QtCore/QMetaType \
+		S:/Soft/Qt5.8.0/5.8/mingw53_32/include/QtCore/QDebug \
+		S:/Soft/Qt5.8.0/5.8/mingw53_32/include/QtCore/QThread \
+		S:/Soft/Qt5.8.0/5.8/mingw53_32/include/QtCore/qthread.h \
+		gparser.h \
+		S:/Soft/Qt5.8.0/5.8/mingw53_32/include/QtCore/QString \
 		programrun.h \
-		S:/Soft/Qt5.8.0/5.8/mingw53_32/include/QtCore/QByteArray \
-		S:/Soft/Qt5.8.0/5.8/mingw53_32/include/QtCore/QMetaType
+		S:/Soft/Qt5.8.0/5.8/mingw53_32/include/QtCore/QByteArray
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\mainwindow.o mainwindow.cpp
 
 debug/port.o: port.cpp port.h \

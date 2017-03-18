@@ -1,3 +1,13 @@
+/* @DEVITT DMITRY 12.03.2017
+*  "KAWASAKI-GCODE" the parser for indastrial robots KAWASAKI D series;
+*
+*
+*
+*
+*
+* */
+
+
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QFileDialog>
@@ -28,17 +38,17 @@ MainWindow::MainWindow(QWidget *parent) :
 
     //thread_Move
       // start move
-    connect(ui->pushButton_play,SIGNAL(pressed()),gparse,SLOT(SetList()));
-    connect(gparse,SIGNAL(filePos(QList<paramPoint>)),RunMove,SLOT(StartProgram(QList<paramPoint>)));
-    connect(ui->pushButton_pause,SIGNAL(pressed()),RunMove,SLOT(PlayMove()),Qt::DirectConnection);      // pause move
+    connect(ui->pushButton_play,SIGNAL(pressed()),gparse,SLOT(SetList()));                              //get list point
+    connect(gparse,SIGNAL(filePos(QList<paramPoint>)),RunMove,SLOT(StartProgram(QList<paramPoint>)));   //run programm
+    connect(ui->pushButton_pause,SIGNAL(pressed()),RunMove,SLOT(PauseProgram()),Qt::DirectConnection);  // pause move
+    connect(gparse,SIGNAL(cmdError()),RunMove,SLOT(PauseProgram()),Qt::DirectConnection);               // ERROR
     connect(ui->pushButton_Stop,SIGNAL(pressed()),RunMove,SLOT(StopProgram()),Qt::DirectConnection);    // stop move
-    connect(ui->setOrigin,SIGNAL(pressed()),RunMove,SLOT(SetOrigin()));                                 // set origin
-    connect(PortNew, SIGNAL(GetStart()), RunMove, SLOT(setResporse()),Qt::DirectConnection);       // if resive in port
-    connect(ui->pushButton_pause,SIGNAL(pressed()),RunMove,SLOT(setResporse()),Qt::DirectConnection);      // for test move
-
-
-
     connect(gparse,SIGNAL(cmdComplite()),RunMove,SLOT(PlayMove()),Qt::DirectConnection);                //next pos if complide movement
+
+    connect(ui->setOrigin,SIGNAL(pressed()),RunMove,SLOT(SetOrigin()));                                 // set origin
+    connect(PortNew, SIGNAL(GetStart()), RunMove, SLOT(setResporse()),Qt::DirectConnection);            // if resive in port
+    connect(ui->pushButton_pause,SIGNAL(pressed()),RunMove,SLOT(setResporse()),Qt::DirectConnection);   // for test move
+
     connect(RunMove,SIGNAL(Move(QByteArray)),PortNew,SLOT(WriteToPort(QByteArray)));                    //print movement to port
     connect(RunMove,SIGNAL(MovePrint(QString)),this,SLOT(printToTerminal(QString)));                    //print movement to terminal
 
@@ -47,7 +57,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     //port settings
     connect(thread_Port, SIGNAL(started()), PortNew, SLOT(process_Port()));                             //reinit function run
-    connect(this,SIGNAL(savesettings(QString,int,int,int,int,int)),PortNew,SLOT(Write_Settings_Port(QString,int,int,int,int,int)));//set param port
+    connect(this,SIGNAL(savesettings(QString,int,int,int,int,int)),PortNew,
+            SLOT(Write_Settings_Port(QString,int,int,int,int,int)));                                    //set param port
     connect(PortNew, SIGNAL(finished_Port()), thread_Port, SLOT(quit()));                               //reinit function quit
     connect(thread_Port, SIGNAL(finished()), PortNew, SLOT(deleteLater()));                             //delite tread
     connect(PortNew, SIGNAL(finished_Port()), thread_Port, SLOT(deleteLater()));                        //delite tread
@@ -60,20 +71,21 @@ MainWindow::MainWindow(QWidget *parent) :
     //parsing data
     connect(PortNew, SIGNAL(outPort(QString)),gparse,SLOT(ParseCmd(QString)));                          //parsig send data
     connect(this, SIGNAL(FileData(QStringList)),gparse,SLOT(ParsingFile(QStringList)));                 //send file to parsing
-    connect(gparse, SIGNAL(CoutList(QString)),this,SLOT(on_textOpenFile_textEdited(QString)));                 //send file to parsing
+    connect(gparse, SIGNAL(CoutList(QString)),this,SLOT(on_textOpenFile_textEdited(QString)));          //send file to parsing
 
+    //start treads
     thread_Port->start();
     thread_Move->start();
 
     //progress bar
-    connect(gparse, SIGNAL(fileLengt(int)),ui->progressBar,SLOT(setMaximum(int)));                 //set maximum in progress bar
-    connect(RunMove, SIGNAL(getStep(int)),ui->progressBar,SLOT(setValue(int)));                 //set maximum in progress bar
-    connect(gparse, SIGNAL(fileLengt(int)),RunMove,SLOT(LengtCmd(int)));                 //set maximum in progress bar
+    connect(gparse, SIGNAL(fileLengt(int)),ui->progressBar,SLOT(setMaximum(int)));                      //set maximum in progress bar
+    connect(RunMove, SIGNAL(getStep(int)),ui->progressBar,SLOT(setValue(int)));                         //set maximum in progress bar
+    connect(gparse, SIGNAL(fileLengt(int)),RunMove,SLOT(LengtCmd(int)));                                //set maximum in progress bar
 
     //move button
-    connect(ui->pushButton_nextStep, SIGNAL(pressed()),RunMove,SLOT(nextStep()));                 //set stap to right
-    connect(ui->pushButton_prevStep, SIGNAL(pressed()),RunMove,SLOT(prevStep()));                 //set stap to right
-    connect(ui->actionSend, SIGNAL(changed()),ui->sendToTerminalButton,SLOT(click()));                 //set stap to right
+    connect(ui->pushButton_nextStep, SIGNAL(pressed()),RunMove,SLOT(nextStep()));                       //set stap to right
+    connect(ui->pushButton_prevStep, SIGNAL(pressed()),RunMove,SLOT(prevStep()));                       //set stap to right
+    connect(ui->actionSend, SIGNAL(changed()),ui->sendToTerminalButton,SLOT(click()));                  //send msg put Enter
 
 }
 

@@ -15,6 +15,7 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QComboBox>
+#include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
@@ -22,7 +23,6 @@
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
-#include <QtWidgets/QPlainTextEdit>
 #include <QtWidgets/QProgressBar>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSpacerItem>
@@ -44,18 +44,6 @@ public:
     QPushButton *pushButton_YUp;
     QPushButton *pushButton_ZDown;
     QPushButton *pushButton_ZUp;
-    QPushButton *j3_up;
-    QPushButton *j3_down;
-    QLabel *label_2;
-    QPushButton *j4_down;
-    QPushButton *j6_up;
-    QLabel *label_5;
-    QPushButton *j4_up;
-    QPushButton *j6_down;
-    QLabel *label_8;
-    QPushButton *j5_down;
-    QLabel *label_7;
-    QPushButton *j5_up;
     QWidget *layoutWidget;
     QVBoxLayout *verticalLayout_2;
     QVBoxLayout *verticalLayout;
@@ -81,12 +69,6 @@ public:
     QPushButton *pushButton_XDown;
     QPushButton *pushButton_YDown;
     QPushButton *pushButton_XUp;
-    QLabel *label_6;
-    QLabel *label_4;
-    QPushButton *j2_down;
-    QPushButton *j1_up;
-    QPushButton *j2_up;
-    QPushButton *j1_down;
     QSplitter *splitter_6;
     QSplitter *splitter_2;
     QPushButton *setOrigin;
@@ -100,7 +82,26 @@ public:
     QSplitter *splitter_3;
     QPushButton *scanCom;
     QPushButton *connectButton;
-    QPlainTextEdit *currentPos;
+    QWidget *widget;
+    QGridLayout *gridLayout;
+    QLabel *label_6;
+    QLabel *label_4;
+    QLabel *label_2;
+    QLabel *label_5;
+    QLabel *label_7;
+    QLabel *label_8;
+    QPushButton *j1_up;
+    QPushButton *j2_up;
+    QPushButton *j3_up;
+    QPushButton *j4_up;
+    QPushButton *j5_up;
+    QPushButton *j6_up;
+    QPushButton *j1_down;
+    QPushButton *j2_down;
+    QPushButton *j3_down;
+    QPushButton *j4_down;
+    QPushButton *j5_down;
+    QPushButton *j6_down;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
     QMenuBar *menuBar;
@@ -117,98 +118,21 @@ public:
         actionSend = new QAction(MainWindow);
         actionSend->setObjectName(QStringLiteral("actionSend"));
         actionSend->setCheckable(true);
+        actionSend->setEnabled(true);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         pushButton_YUp = new QPushButton(centralWidget);
         pushButton_YUp->setObjectName(QStringLiteral("pushButton_YUp"));
-        pushButton_YUp->setGeometry(QRect(580, 370, 51, 61));
+        pushButton_YUp->setGeometry(QRect(590, 330, 51, 61));
         pushButton_ZDown = new QPushButton(centralWidget);
         pushButton_ZDown->setObjectName(QStringLiteral("pushButton_ZDown"));
-        pushButton_ZDown->setGeometry(QRect(510, 340, 51, 61));
+        pushButton_ZDown->setGeometry(QRect(520, 300, 51, 61));
         pushButton_ZUp = new QPushButton(centralWidget);
         pushButton_ZUp->setObjectName(QStringLiteral("pushButton_ZUp"));
-        pushButton_ZUp->setGeometry(QRect(650, 340, 51, 61));
-        j3_up = new QPushButton(centralWidget);
-        j3_up->setObjectName(QStringLiteral("j3_up"));
-        j3_up->setGeometry(QRect(570, 180, 47, 23));
-        j3_up->setMinimumSize(QSize(27, 23));
-        j3_down = new QPushButton(centralWidget);
-        j3_down->setObjectName(QStringLiteral("j3_down"));
-        j3_down->setGeometry(QRect(570, 204, 47, 23));
-        j3_down->setMinimumSize(QSize(27, 23));
-        label_2 = new QLabel(centralWidget);
-        label_2->setObjectName(QStringLiteral("label_2"));
-        label_2->setGeometry(QRect(570, 155, 29, 22));
-        label_2->setMinimumSize(QSize(29, 22));
-        QFont font;
-        font.setPointSize(12);
-        label_2->setFont(font);
-        label_2->setLayoutDirection(Qt::LeftToRight);
-        label_2->setFrameShadow(QFrame::Plain);
-        label_2->setLineWidth(1);
-        label_2->setScaledContents(false);
-        label_2->setAlignment(Qt::AlignCenter);
-        label_2->setTextInteractionFlags(Qt::NoTextInteraction);
-        j4_down = new QPushButton(centralWidget);
-        j4_down->setObjectName(QStringLiteral("j4_down"));
-        j4_down->setGeometry(QRect(625, 204, 46, 23));
-        j4_down->setMinimumSize(QSize(27, 23));
-        j6_up = new QPushButton(centralWidget);
-        j6_up->setObjectName(QStringLiteral("j6_up"));
-        j6_up->setGeometry(QRect(733, 180, 46, 23));
-        j6_up->setMinimumSize(QSize(27, 23));
-        label_5 = new QLabel(centralWidget);
-        label_5->setObjectName(QStringLiteral("label_5"));
-        label_5->setGeometry(QRect(625, 155, 29, 22));
-        label_5->setMinimumSize(QSize(29, 22));
-        label_5->setFont(font);
-        label_5->setLayoutDirection(Qt::LeftToRight);
-        label_5->setFrameShadow(QFrame::Plain);
-        label_5->setLineWidth(1);
-        label_5->setScaledContents(false);
-        label_5->setAlignment(Qt::AlignCenter);
-        label_5->setTextInteractionFlags(Qt::NoTextInteraction);
-        j4_up = new QPushButton(centralWidget);
-        j4_up->setObjectName(QStringLiteral("j4_up"));
-        j4_up->setGeometry(QRect(625, 180, 46, 23));
-        j4_up->setMinimumSize(QSize(27, 23));
-        j6_down = new QPushButton(centralWidget);
-        j6_down->setObjectName(QStringLiteral("j6_down"));
-        j6_down->setGeometry(QRect(733, 204, 46, 23));
-        j6_down->setMinimumSize(QSize(27, 23));
-        label_8 = new QLabel(centralWidget);
-        label_8->setObjectName(QStringLiteral("label_8"));
-        label_8->setGeometry(QRect(733, 155, 29, 22));
-        label_8->setMinimumSize(QSize(29, 22));
-        label_8->setFont(font);
-        label_8->setLayoutDirection(Qt::LeftToRight);
-        label_8->setFrameShadow(QFrame::Plain);
-        label_8->setLineWidth(1);
-        label_8->setScaledContents(false);
-        label_8->setAlignment(Qt::AlignCenter);
-        label_8->setTextInteractionFlags(Qt::NoTextInteraction);
-        j5_down = new QPushButton(centralWidget);
-        j5_down->setObjectName(QStringLiteral("j5_down"));
-        j5_down->setGeometry(QRect(679, 204, 46, 23));
-        j5_down->setMinimumSize(QSize(27, 23));
-        label_7 = new QLabel(centralWidget);
-        label_7->setObjectName(QStringLiteral("label_7"));
-        label_7->setGeometry(QRect(679, 155, 29, 22));
-        label_7->setMinimumSize(QSize(29, 22));
-        label_7->setFont(font);
-        label_7->setLayoutDirection(Qt::LeftToRight);
-        label_7->setFrameShadow(QFrame::Plain);
-        label_7->setLineWidth(1);
-        label_7->setScaledContents(false);
-        label_7->setAlignment(Qt::AlignCenter);
-        label_7->setTextInteractionFlags(Qt::NoTextInteraction);
-        j5_up = new QPushButton(centralWidget);
-        j5_up->setObjectName(QStringLiteral("j5_up"));
-        j5_up->setGeometry(QRect(679, 180, 46, 23));
-        j5_up->setMinimumSize(QSize(27, 23));
+        pushButton_ZUp->setGeometry(QRect(660, 300, 51, 61));
         layoutWidget = new QWidget(centralWidget);
         layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
-        layoutWidget->setGeometry(QRect(10, 10, 430, 501));
+        layoutWidget->setGeometry(QRect(10, 10, 431, 521));
         verticalLayout_2 = new QVBoxLayout(layoutWidget);
         verticalLayout_2->setSpacing(6);
         verticalLayout_2->setContentsMargins(11, 11, 11, 11);
@@ -312,6 +236,8 @@ public:
         set_command->setObjectName(QStringLiteral("set_command"));
         set_command->setAutoFillBackground(false);
         set_command->setLocale(QLocale(QLocale::English, QLocale::UnitedStates));
+        set_command->setMaxLength(150);
+        set_command->setClearButtonEnabled(true);
 
         horizontalLayout_3->addWidget(set_command);
 
@@ -325,7 +251,7 @@ public:
 
         splitter = new QSplitter(centralWidget);
         splitter->setObjectName(QStringLiteral("splitter"));
-        splitter->setGeometry(QRect(520, 440, 171, 61));
+        splitter->setGeometry(QRect(530, 400, 171, 61));
         splitter->setOrientation(Qt::Horizontal);
         pushButton_XDown = new QPushButton(splitter);
         pushButton_XDown->setObjectName(QStringLiteral("pushButton_XDown"));
@@ -337,47 +263,9 @@ public:
         pushButton_XUp = new QPushButton(splitter);
         pushButton_XUp->setObjectName(QStringLiteral("pushButton_XUp"));
         splitter->addWidget(pushButton_XUp);
-        label_6 = new QLabel(centralWidget);
-        label_6->setObjectName(QStringLiteral("label_6"));
-        label_6->setGeometry(QRect(462, 155, 29, 22));
-        label_6->setMinimumSize(QSize(29, 22));
-        label_6->setFont(font);
-        label_6->setLayoutDirection(Qt::LeftToRight);
-        label_6->setFrameShadow(QFrame::Plain);
-        label_6->setLineWidth(1);
-        label_6->setScaledContents(false);
-        label_6->setAlignment(Qt::AlignCenter);
-        label_6->setTextInteractionFlags(Qt::NoTextInteraction);
-        label_4 = new QLabel(centralWidget);
-        label_4->setObjectName(QStringLiteral("label_4"));
-        label_4->setGeometry(QRect(516, 155, 29, 22));
-        label_4->setMinimumSize(QSize(29, 22));
-        label_4->setFont(font);
-        label_4->setLayoutDirection(Qt::LeftToRight);
-        label_4->setFrameShadow(QFrame::Plain);
-        label_4->setLineWidth(1);
-        label_4->setScaledContents(false);
-        label_4->setAlignment(Qt::AlignCenter);
-        label_4->setTextInteractionFlags(Qt::NoTextInteraction);
-        j2_down = new QPushButton(centralWidget);
-        j2_down->setObjectName(QStringLiteral("j2_down"));
-        j2_down->setGeometry(QRect(516, 204, 46, 23));
-        j2_down->setMinimumSize(QSize(27, 23));
-        j1_up = new QPushButton(centralWidget);
-        j1_up->setObjectName(QStringLiteral("j1_up"));
-        j1_up->setGeometry(QRect(462, 180, 46, 23));
-        j1_up->setMinimumSize(QSize(27, 23));
-        j2_up = new QPushButton(centralWidget);
-        j2_up->setObjectName(QStringLiteral("j2_up"));
-        j2_up->setGeometry(QRect(516, 180, 46, 23));
-        j2_up->setMinimumSize(QSize(27, 23));
-        j1_down = new QPushButton(centralWidget);
-        j1_down->setObjectName(QStringLiteral("j1_down"));
-        j1_down->setGeometry(QRect(462, 204, 46, 23));
-        j1_down->setMinimumSize(QSize(27, 23));
         splitter_6 = new QSplitter(centralWidget);
         splitter_6->setObjectName(QStringLiteral("splitter_6"));
-        splitter_6->setGeometry(QRect(460, 260, 321, 31));
+        splitter_6->setGeometry(QRect(460, 200, 321, 31));
         splitter_6->setOrientation(Qt::Horizontal);
         splitter_2 = new QSplitter(splitter_6);
         splitter_2->setObjectName(QStringLiteral("splitter_2"));
@@ -397,6 +285,8 @@ public:
         splitter_5->setOrientation(Qt::Horizontal);
         label_9 = new QLabel(splitter_5);
         label_9->setObjectName(QStringLiteral("label_9"));
+        QFont font;
+        font.setPointSize(12);
         label_9->setFont(font);
         splitter_5->addWidget(label_9);
         SPEED = new QSpinBox(splitter_5);
@@ -431,10 +321,164 @@ public:
         connectButton->setObjectName(QStringLiteral("connectButton"));
         splitter_3->addWidget(connectButton);
         splitter_4->addWidget(splitter_3);
-        currentPos = new QPlainTextEdit(centralWidget);
-        currentPos->setObjectName(QStringLiteral("currentPos"));
-        currentPos->setGeometry(QRect(460, 70, 321, 81));
-        currentPos->setReadOnly(true);
+        widget = new QWidget(centralWidget);
+        widget->setObjectName(QStringLiteral("widget"));
+        widget->setGeometry(QRect(460, 70, 331, 101));
+        gridLayout = new QGridLayout(widget);
+        gridLayout->setSpacing(6);
+        gridLayout->setContentsMargins(11, 11, 11, 11);
+        gridLayout->setObjectName(QStringLiteral("gridLayout"));
+        gridLayout->setContentsMargins(0, 0, 0, 0);
+        label_6 = new QLabel(widget);
+        label_6->setObjectName(QStringLiteral("label_6"));
+        label_6->setMinimumSize(QSize(29, 22));
+        label_6->setFont(font);
+        label_6->setLayoutDirection(Qt::LeftToRight);
+        label_6->setFrameShadow(QFrame::Plain);
+        label_6->setLineWidth(1);
+        label_6->setScaledContents(false);
+        label_6->setAlignment(Qt::AlignCenter);
+        label_6->setTextInteractionFlags(Qt::NoTextInteraction);
+
+        gridLayout->addWidget(label_6, 0, 0, 1, 1);
+
+        label_4 = new QLabel(widget);
+        label_4->setObjectName(QStringLiteral("label_4"));
+        label_4->setMinimumSize(QSize(29, 22));
+        label_4->setFont(font);
+        label_4->setLayoutDirection(Qt::LeftToRight);
+        label_4->setFrameShadow(QFrame::Plain);
+        label_4->setLineWidth(1);
+        label_4->setScaledContents(false);
+        label_4->setAlignment(Qt::AlignCenter);
+        label_4->setTextInteractionFlags(Qt::NoTextInteraction);
+
+        gridLayout->addWidget(label_4, 0, 1, 1, 1);
+
+        label_2 = new QLabel(widget);
+        label_2->setObjectName(QStringLiteral("label_2"));
+        label_2->setMinimumSize(QSize(29, 22));
+        label_2->setFont(font);
+        label_2->setLayoutDirection(Qt::LeftToRight);
+        label_2->setFrameShadow(QFrame::Plain);
+        label_2->setLineWidth(1);
+        label_2->setScaledContents(false);
+        label_2->setAlignment(Qt::AlignCenter);
+        label_2->setTextInteractionFlags(Qt::NoTextInteraction);
+
+        gridLayout->addWidget(label_2, 0, 2, 1, 1);
+
+        label_5 = new QLabel(widget);
+        label_5->setObjectName(QStringLiteral("label_5"));
+        label_5->setMinimumSize(QSize(29, 22));
+        label_5->setFont(font);
+        label_5->setLayoutDirection(Qt::LeftToRight);
+        label_5->setFrameShadow(QFrame::Plain);
+        label_5->setLineWidth(1);
+        label_5->setScaledContents(false);
+        label_5->setAlignment(Qt::AlignCenter);
+        label_5->setTextInteractionFlags(Qt::NoTextInteraction);
+
+        gridLayout->addWidget(label_5, 0, 3, 1, 1);
+
+        label_7 = new QLabel(widget);
+        label_7->setObjectName(QStringLiteral("label_7"));
+        label_7->setMinimumSize(QSize(29, 22));
+        label_7->setFont(font);
+        label_7->setLayoutDirection(Qt::LeftToRight);
+        label_7->setFrameShadow(QFrame::Plain);
+        label_7->setLineWidth(1);
+        label_7->setScaledContents(false);
+        label_7->setAlignment(Qt::AlignCenter);
+        label_7->setTextInteractionFlags(Qt::NoTextInteraction);
+
+        gridLayout->addWidget(label_7, 0, 4, 1, 1);
+
+        label_8 = new QLabel(widget);
+        label_8->setObjectName(QStringLiteral("label_8"));
+        label_8->setMinimumSize(QSize(29, 22));
+        label_8->setFont(font);
+        label_8->setLayoutDirection(Qt::LeftToRight);
+        label_8->setFrameShadow(QFrame::Plain);
+        label_8->setLineWidth(1);
+        label_8->setScaledContents(false);
+        label_8->setAlignment(Qt::AlignCenter);
+        label_8->setTextInteractionFlags(Qt::NoTextInteraction);
+
+        gridLayout->addWidget(label_8, 0, 5, 1, 1);
+
+        j1_up = new QPushButton(widget);
+        j1_up->setObjectName(QStringLiteral("j1_up"));
+        j1_up->setMinimumSize(QSize(27, 23));
+
+        gridLayout->addWidget(j1_up, 1, 0, 1, 1);
+
+        j2_up = new QPushButton(widget);
+        j2_up->setObjectName(QStringLiteral("j2_up"));
+        j2_up->setMinimumSize(QSize(27, 23));
+
+        gridLayout->addWidget(j2_up, 1, 1, 1, 1);
+
+        j3_up = new QPushButton(widget);
+        j3_up->setObjectName(QStringLiteral("j3_up"));
+        j3_up->setMinimumSize(QSize(27, 23));
+
+        gridLayout->addWidget(j3_up, 1, 2, 1, 1);
+
+        j4_up = new QPushButton(widget);
+        j4_up->setObjectName(QStringLiteral("j4_up"));
+        j4_up->setMinimumSize(QSize(27, 23));
+
+        gridLayout->addWidget(j4_up, 1, 3, 1, 1);
+
+        j5_up = new QPushButton(widget);
+        j5_up->setObjectName(QStringLiteral("j5_up"));
+        j5_up->setMinimumSize(QSize(27, 23));
+
+        gridLayout->addWidget(j5_up, 1, 4, 1, 1);
+
+        j6_up = new QPushButton(widget);
+        j6_up->setObjectName(QStringLiteral("j6_up"));
+        j6_up->setMinimumSize(QSize(27, 23));
+
+        gridLayout->addWidget(j6_up, 1, 5, 1, 1);
+
+        j1_down = new QPushButton(widget);
+        j1_down->setObjectName(QStringLiteral("j1_down"));
+        j1_down->setMinimumSize(QSize(27, 23));
+
+        gridLayout->addWidget(j1_down, 2, 0, 1, 1);
+
+        j2_down = new QPushButton(widget);
+        j2_down->setObjectName(QStringLiteral("j2_down"));
+        j2_down->setMinimumSize(QSize(27, 23));
+
+        gridLayout->addWidget(j2_down, 2, 1, 1, 1);
+
+        j3_down = new QPushButton(widget);
+        j3_down->setObjectName(QStringLiteral("j3_down"));
+        j3_down->setMinimumSize(QSize(27, 23));
+
+        gridLayout->addWidget(j3_down, 2, 2, 1, 1);
+
+        j4_down = new QPushButton(widget);
+        j4_down->setObjectName(QStringLiteral("j4_down"));
+        j4_down->setMinimumSize(QSize(27, 23));
+
+        gridLayout->addWidget(j4_down, 2, 3, 1, 1);
+
+        j5_down = new QPushButton(widget);
+        j5_down->setObjectName(QStringLiteral("j5_down"));
+        j5_down->setMinimumSize(QSize(27, 23));
+
+        gridLayout->addWidget(j5_down, 2, 4, 1, 1);
+
+        j6_down = new QPushButton(widget);
+        j6_down->setObjectName(QStringLiteral("j6_down"));
+        j6_down->setMinimumSize(QSize(27, 23));
+
+        gridLayout->addWidget(j6_down, 2, 5, 1, 1);
+
         MainWindow->setCentralWidget(centralWidget);
         splitter->raise();
         label_6->raise();
@@ -461,7 +505,6 @@ public:
         j5_down->raise();
         label_7->raise();
         j5_up->raise();
-        currentPos->raise();
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
         MainWindow->addToolBar(Qt::TopToolBarArea, mainToolBar);
@@ -491,22 +534,10 @@ public:
 #ifndef QT_NO_TOOLTIP
         actionSend->setToolTip(QApplication::translate("MainWindow", "Send command", Q_NULLPTR));
 #endif // QT_NO_TOOLTIP
-        actionSend->setShortcut(QApplication::translate("MainWindow", "Return, Q", Q_NULLPTR));
+        actionSend->setShortcut(QApplication::translate("MainWindow", "Enter", Q_NULLPTR));
         pushButton_YUp->setText(QApplication::translate("MainWindow", "Y+", Q_NULLPTR));
         pushButton_ZDown->setText(QApplication::translate("MainWindow", "Z -", Q_NULLPTR));
         pushButton_ZUp->setText(QApplication::translate("MainWindow", "Z +", Q_NULLPTR));
-        j3_up->setText(QApplication::translate("MainWindow", "+", Q_NULLPTR));
-        j3_down->setText(QApplication::translate("MainWindow", "-", Q_NULLPTR));
-        label_2->setText(QApplication::translate("MainWindow", "J3", Q_NULLPTR));
-        j4_down->setText(QApplication::translate("MainWindow", "-", Q_NULLPTR));
-        j6_up->setText(QApplication::translate("MainWindow", "+", Q_NULLPTR));
-        label_5->setText(QApplication::translate("MainWindow", "J4", Q_NULLPTR));
-        j4_up->setText(QApplication::translate("MainWindow", "+", Q_NULLPTR));
-        j6_down->setText(QApplication::translate("MainWindow", "-", Q_NULLPTR));
-        label_8->setText(QApplication::translate("MainWindow", "J6", Q_NULLPTR));
-        j5_down->setText(QApplication::translate("MainWindow", "-", Q_NULLPTR));
-        label_7->setText(QApplication::translate("MainWindow", "J5", Q_NULLPTR));
-        j5_up->setText(QApplication::translate("MainWindow", "+", Q_NULLPTR));
         label->setText(QApplication::translate("MainWindow", "Open GCODE file:", Q_NULLPTR));
         openFile->setText(QApplication::translate("MainWindow", "Open file", Q_NULLPTR));
         pushButton_prevStep->setText(QApplication::translate("MainWindow", "Prev", Q_NULLPTR));
@@ -530,18 +561,30 @@ public:
         pushButton_XDown->setText(QApplication::translate("MainWindow", "X -", Q_NULLPTR));
         pushButton_YDown->setText(QApplication::translate("MainWindow", "Y -", Q_NULLPTR));
         pushButton_XUp->setText(QApplication::translate("MainWindow", "X +", Q_NULLPTR));
-        label_6->setText(QApplication::translate("MainWindow", "J1", Q_NULLPTR));
-        label_4->setText(QApplication::translate("MainWindow", "J2", Q_NULLPTR));
-        j2_down->setText(QApplication::translate("MainWindow", "-", Q_NULLPTR));
-        j1_up->setText(QApplication::translate("MainWindow", "+", Q_NULLPTR));
-        j2_up->setText(QApplication::translate("MainWindow", "+", Q_NULLPTR));
-        j1_down->setText(QApplication::translate("MainWindow", "-", Q_NULLPTR));
         setOrigin->setText(QApplication::translate("MainWindow", "set origin", Q_NULLPTR));
         reset->setText(QApplication::translate("MainWindow", "reset", Q_NULLPTR));
         resetError->setText(QApplication::translate("MainWindow", "error reset", Q_NULLPTR));
         label_9->setText(QApplication::translate("MainWindow", "Speed:", Q_NULLPTR));
         scanCom->setText(QApplication::translate("MainWindow", "Scan", Q_NULLPTR));
         connectButton->setText(QApplication::translate("MainWindow", "Connect", Q_NULLPTR));
+        label_6->setText(QApplication::translate("MainWindow", "J1", Q_NULLPTR));
+        label_4->setText(QApplication::translate("MainWindow", "J2", Q_NULLPTR));
+        label_2->setText(QApplication::translate("MainWindow", "J3", Q_NULLPTR));
+        label_5->setText(QApplication::translate("MainWindow", "J4", Q_NULLPTR));
+        label_7->setText(QApplication::translate("MainWindow", "J5", Q_NULLPTR));
+        label_8->setText(QApplication::translate("MainWindow", "J6", Q_NULLPTR));
+        j1_up->setText(QApplication::translate("MainWindow", "+", Q_NULLPTR));
+        j2_up->setText(QApplication::translate("MainWindow", "+", Q_NULLPTR));
+        j3_up->setText(QApplication::translate("MainWindow", "+", Q_NULLPTR));
+        j4_up->setText(QApplication::translate("MainWindow", "+", Q_NULLPTR));
+        j5_up->setText(QApplication::translate("MainWindow", "+", Q_NULLPTR));
+        j6_up->setText(QApplication::translate("MainWindow", "+", Q_NULLPTR));
+        j1_down->setText(QApplication::translate("MainWindow", "-", Q_NULLPTR));
+        j2_down->setText(QApplication::translate("MainWindow", "-", Q_NULLPTR));
+        j3_down->setText(QApplication::translate("MainWindow", "-", Q_NULLPTR));
+        j4_down->setText(QApplication::translate("MainWindow", "-", Q_NULLPTR));
+        j5_down->setText(QApplication::translate("MainWindow", "-", Q_NULLPTR));
+        j6_down->setText(QApplication::translate("MainWindow", "-", Q_NULLPTR));
         menuKAWA_GCODE->setTitle(QApplication::translate("MainWindow", "KAWA-GCODE", Q_NULLPTR));
     } // retranslateUi
 
