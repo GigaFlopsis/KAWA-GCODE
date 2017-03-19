@@ -210,7 +210,6 @@ void ProgramRun::WriteToFile(const QList<paramPoint> &posList)
                play = false;
                break;
             }
-
             QByteArray cmd = SendMove(posList.at(step),false);
             f.write(cmd + "\n");
             nextStep();
