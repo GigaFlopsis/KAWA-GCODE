@@ -1,0 +1,17 @@
+<!DOCTYPE RCC><RCC version="1.0">
+<qresource prefix="/">
+<file alias="icon/-.png">S:/Cloud/Project/My project/Robor kawasaki/KAWA-GCODE/icon/-.png</file>
+<file alias="icon/+.png">S:/Cloud/Project/My project/Robor kawasaki/KAWA-GCODE/icon/+.png</file>
+<file alias="icon/Connect.png">S:/Cloud/Project/My project/Robor kawasaki/KAWA-GCODE/icon/Connect.png</file>
+<file alias="icon/Disconnect.png">S:/Cloud/Project/My project/Robor kawasaki/KAWA-GCODE/icon/Disconnect.png</file>
+<file alias="icon/download.png">S:/Cloud/Project/My project/Robor kawasaki/KAWA-GCODE/icon/download.png</file>
+<file alias="icon/error.png">S:/Cloud/Project/My project/Robor kawasaki/KAWA-GCODE/icon/error.png</file>
+<file alias="icon/info.png">S:/Cloud/Project/My project/Robor kawasaki/KAWA-GCODE/icon/info.png</file>
+<file alias="icon/more.png">S:/Cloud/Project/My project/Robor kawasaki/KAWA-GCODE/icon/more.png</file>
+<file alias="icon/next.png">S:/Cloud/Project/My project/Robor kawasaki/KAWA-GCODE/icon/next.png</file>
+<file alias="icon/play.png">S:/Cloud/Project/My project/Robor kawasaki/KAWA-GCODE/icon/play.png</file>
+<file alias="icon/prev.png">S:/Cloud/Project/My project/Robor kawasaki/KAWA-GCODE/icon/prev.png</file>
+<file alias="icon/scan.png">S:/Cloud/Project/My project/Robor kawasaki/KAWA-GCODE/icon/scan.png</file>
+<file alias="icon/send.png">S:/Cloud/Project/My project/Robor kawasaki/KAWA-GCODE/icon/send.png</file>
+</qresource>
+</RCC>

@@ -93,7 +93,6 @@ MainWindow::MainWindow(QWidget *parent) :
     //move button
     connect(ui->pushButton_nextStep, SIGNAL(pressed()),RunMove,SLOT(nextStep()));                       //set stap to right
     connect(ui->pushButton_prevStep, SIGNAL(pressed()),RunMove,SLOT(prevStep()));                       //set stap to right
-    connect(ui->actionSend, SIGNAL(changed()),ui->sendToTerminalButton,SLOT(click()));                  //send msg put Enter
 
 }
 
@@ -341,4 +340,13 @@ void MainWindow::on_j6_down_clicked()
     QString cmd = "DO DRIVE 6,-10," + ui->SPEED->text();
     printToTerminal(cmd);
     emit writeData(cmd.toLocal8Bit());
+}
+
+//keyboard event
+void MainWindow::keyPressEvent(QKeyEvent *event) {
+ int key=event->key();//event->key() - целочисленный код клавиши
+ if (key== Qt::Key_Enter || key== Qt::Key_Return) { //send if put ENTER
+     on_sendToTerminalButton_clicked();
+ }
+
 }

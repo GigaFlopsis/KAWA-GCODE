@@ -6,6 +6,8 @@
 #include <QtSerialPort/QSerialPort>
 #include <QtSerialPort/QSerialPortInfo>
 #include <QStringList>
+#include <QKeyEvent>
+
 namespace Ui {
 class MainWindow;
 }
@@ -80,7 +82,8 @@ public slots:
 private:
     Ui::MainWindow *ui;
     Port PortNew;
-
+protected:
+   virtual void keyPressEvent(QKeyEvent *event);
 };
 
 #endif // MAINWINDOW_H

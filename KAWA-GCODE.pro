@@ -17,11 +17,18 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     port.cpp \
     gparser.cpp \
-    programrun.cpp
+    programrun.cpp \
+    openfile.cpp \
+    test.cpp
 
 HEADERS  += mainwindow.h \
     port.h \
     gparser.h \
-    programrun.h
+    programrun.h \
+    openfile.h \
+    test.h \
+    ui_mainwindow.h
 
 FORMS    += mainwindow.ui
+
+
