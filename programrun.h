@@ -52,8 +52,9 @@ public slots:
     void LengtCmd(int i);
     void WriteToFile(const QList<paramPoint> &posList);
 private:
-    QByteArray SendMove(paramPoint data,bool realTime);
-
+    QByteArray GetLMove(paramPoint data,bool realTime);
+    QByteArray GetJMove(paramPoint targetData,paramPoint prevData,bool realTime,int num);
+    paramPoint GetC1MovePoint(paramPoint targetData,paramPoint prevData);
 };
 
 #endif // PROGRAMRUN_H

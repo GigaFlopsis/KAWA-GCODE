@@ -18,15 +18,13 @@ SOURCES += main.cpp\
     port.cpp \
     gparser.cpp \
     programrun.cpp \
-    openfile.cpp \
-    test.cpp
+    openfile.cpp
 
 HEADERS  += mainwindow.h \
     port.h \
     gparser.h \
     programrun.h \
     openfile.h \
-    test.h \
     ui_mainwindow.h
 
 FORMS    += mainwindow.ui

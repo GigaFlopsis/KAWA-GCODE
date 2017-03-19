@@ -5,7 +5,6 @@ INPUT(
 ./debug\gparser.o
 ./debug\programrun.o
 ./debug\openfile.o
-./debug\test.o
 ./debug\moc_mainwindow.o
 ./debug\moc_port.o
 ./debug\moc_gparser.o

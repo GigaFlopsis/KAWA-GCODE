@@ -5,7 +5,6 @@ INPUT(
 ./release\gparser.o
 ./release\programrun.o
 ./release\openfile.o
-./release\test.o
 ./release\moc_mainwindow.o
 ./release\moc_port.o
 ./release\moc_gparser.o

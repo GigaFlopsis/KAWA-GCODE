@@ -95,11 +95,17 @@ void GParser::ParsingFile(QStringList dataLine)
                 (data.length() < 2))
         {
             k++;
-            qDebug() << "continue" << endl;
             continue;
         }
         QStringList splitLine = dataLine.at(i).split(" ");
         paramPoint currentPoint =  ParseParam(splitLine);
+
+        //set inly G00 - G03 cmd
+        if(currentPoint.g > 3)
+        {
+            k++;
+            continue;
+        }
         if(i-k == 0)
         {
             paramPoint zeroPos;
@@ -116,9 +122,8 @@ void GParser::ParsingFile(QStringList dataLine)
         {
             ChangeEmpyParam(currentPoint, posList.at(i-k-1));
         }
-
         // cout in command window
-        QString cmd = QString::number(posList.length())+": ";
+        QString cmd = QString::number(posList.length()+1)+": ";
                 cmd += "     G:" + QString::number(currentPoint.g,'d');
                 cmd += "    X:" + QString::number(currentPoint.x,'f',3);
                 cmd += "    Y:" + QString::number(currentPoint.y,'f',3);
