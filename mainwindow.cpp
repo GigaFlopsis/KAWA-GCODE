@@ -94,6 +94,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->pushButton_nextStep, SIGNAL(pressed()),RunMove,SLOT(nextStep()));                       //set stap to right
     connect(ui->pushButton_prevStep, SIGNAL(pressed()),RunMove,SLOT(prevStep()));                       //set stap to right
 
+
 }
 
 MainWindow::~MainWindow()

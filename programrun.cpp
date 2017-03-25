@@ -84,10 +84,7 @@ void ProgramRun::StartProgram(const QList<paramPoint> &posList)
             if(posList.at(step).g == 2 || posList.at(step).g == 3){
                 if(step > 0)
                 {
-                    QByteArray cmd = GetJMove(posList.at(step),posList.at(step-1),true,0);
-                    emit Move(cmd);
-                    emit MovePrint(cmd);
-                    cmd = GetJMove(posList.at(step),posList.at(step-1),true,1);
+                    QByteArray cmd = GetLMove(posList.at(step),true);
                     emit Move(cmd);
                     emit MovePrint(cmd);
                 }
@@ -193,22 +190,22 @@ QByteArray ProgramRun::GetLMove(paramPoint data, bool realTime)
     cmd += QString::number(data.z,'f',3) + ")";
     return cmd.toLocal8Bit();
 
-    //    if(data.g == 2 || data.g == 3) //join move
-    //    {
-    //        QString cmd;
-    //        if(realTime)
-    //        {
-    //            cmd = "DO ";
-    //        }
-    //        else {
-    //            cmd = "";
-    //        }
-    //        cmd += "JMOVE SHIFT(a BY ";
-    //        cmd += QString::number(data.x,'f',3) + ",";
-    //        cmd += QString::number(data.y,'f',3) + ",";
-    //        cmd += QString::number(data.z,'f',3) + ")";
-    //        return cmd.toLocal8Bit();
-    //    }
+        if(data.g == 2 || data.g == 3) //join move
+        {
+            QString cmd;
+            if(realTime)
+            {
+                cmd = "DO ";
+            }
+            else {
+                cmd = "";
+            }
+            cmd += "JMOVE SHIFT(a BY ";
+            cmd += QString::number(data.x,'f',3) + ",";
+            cmd += QString::number(data.y,'f',3) + ",";
+            cmd += QString::number(data.z,'f',3) + ")";
+            return cmd.toLocal8Bit();
+        }
 }
 
 //C1MOVE and C2MOVE
