@@ -249,32 +249,62 @@ QByteArray ProgramRun::GetJMove(paramPoint targetData,paramPoint prevData,bool r
 
 paramPoint ProgramRun::GetC1MovePoint(paramPoint targetData,paramPoint prevData)
 {
-    double r = 0;
-    double alfa = 0;
-    double x1 , x2, y1,y2, rX, rY;
+    long double r = 0;
+    long double cx, cy, chord, sagmin, sagmaj, midx, midy, dx, dy, ax, ay;
 
-    rX = targetData.i+targetData.x;
-    rY = targetData.j+targetData.y;
+    //get cocordinates of arc centre
 
-    x1 = rX-targetData.x;
-    y1 = rY-targetData.y;
-    x2 = rX-prevData.x;
-    y2 = rY-prevData.y;
+    cx = prevData.x + targetData.i;
+    cy = prevData.y + targetData.j;
 
     //get radius
-    r = sqrt(pow(targetData.i,2)+pow(targetData.j - rY,2));
+    r = sqrt(pow(targetData.i,2)+pow(targetData.j,2));
 
-    //get apfa
-    alfa = (x1*x2+y1*y2)/(sqrt(x1*x1+y1*y1)*sqrt(x2*x2+y2*y2));
-    if(targetData.g == 3)
-        alfa = acos(alfa)/2;
-    if(targetData.g == 2)
-        alfa = (acos(alfa)/2)+M_1_PI;
+    //get chord length
+    chord = sqrt((pow(targetData.x - prevData.x,2))+(pow(targetData.y - prevData.y,2)));
 
+    //get sagitta minor
+    sagmin = r - (sqrt((pow(r,2)-(pow(chord/2,2)))));
+
+    //get sagitta major
+    sagmaj = r - sagmin;
+
+    //get mid point of chord x
+    midx = (targetData.x + prevData.x)/2;
+
+    //get mid point of chord y
+    midy = (targetData.y + prevData.y)/2;
+
+    //get sagitta major ratio to x
+    dx = (cx - midx)/sagmaj;
+
+    //get sagitta major ratio to y
+    dy = (cy - midy)/sagmaj;
+
+
+    //get arc midpoint x ax
+    if((targetData.x > prevData.x)&& (targetData.y > prevData.y ))
+        ax = midx + (abs(sagmin * dx));
+    if((targetData.x < prevData.x)&& (targetData.y > prevData.y ))
+        ax = midx + (abs(sagmin *dx));
+    if((targetData.x < prevData.x)&& (targetData.y < prevData.y ))
+        ax = midx - (abs(sagmin *dx));
+    if((targetData.x > prevData.x)&& (targetData.y < prevData.y ))
+        ax = midx - (abs(sagmin *dx));
+
+    //get arc midpoint y ay
+    if((targetData.y > prevData.y)&& (targetData.x > prevData.x))
+        ay = midy - (abs(sagmin * dy));
+    if((targetData.y > prevData.y)&& (targetData.x < prevData.x))
+        ay = midy + (abs(sagmin * dy));
+    if((targetData.y < prevData.y)&& (targetData.x < prevData.x))
+        ay = midy + (abs(sagmin * dy));
+    if((targetData.y < prevData.y)&& (targetData.x > prevData.x))
+        ay = midy - (abs(sagmin * dy));
 
     //get x and y lying on the arc
-    targetData.x = rX + (r * cos(alfa));
-    targetData.y = rY + (r * sin(alfa));
+    targetData.x = ax;
+    targetData.y = ay;
 
     return targetData;
 }
@@ -286,6 +316,7 @@ void ProgramRun::WriteToFile(const QList<paramPoint> &posList)
     play = true;
     QFile f("move.as");
     if (f.open(QIODevice::WriteOnly)) {
+        f.write(".PROGRAM move()\n");
         while(play)
         {
             if(posList.isEmpty())
@@ -295,11 +326,11 @@ void ProgramRun::WriteToFile(const QList<paramPoint> &posList)
                 break;
             }
 
-            if(posList.at(step).g <= 1){
+            if(posList.at(step).g <= 1){            //GET G1
                 QByteArray cmd = GetLMove(posList.at(step),false);
                 f.write(cmd + "\n");
             }
-            if(posList.at(step).g >= 2){
+            if(posList.at(step).g >= 2){            //get G2
                 if(posList.at(step).g == 2 || posList.at(step).g == 3){
                     if(step > 0)
                     {
@@ -312,6 +343,7 @@ void ProgramRun::WriteToFile(const QList<paramPoint> &posList)
             }
             nextStep();
         }
+        f.write(".END");
         f.close();
         emit FinishMove();
     }

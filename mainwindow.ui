@@ -592,12 +592,12 @@
      </item>
     </layout>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>11</x>
       <y>11</y>
-      <width>432</width>
+      <width>497</width>
       <height>521</height>
      </rect>
     </property>
@@ -834,7 +834,6 @@ p, li { white-space: pre-wrap; }
    <zorder>pushButton_ZDown</zorder>
    <zorder>pushButton_ZUp</zorder>
    <zorder>layoutWidget</zorder>
-   <zorder>horizontalSpacer</zorder>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
@@ -851,7 +850,7 @@ p, li { white-space: pre-wrap; }
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>25</height>
+     <height>26</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuKAWA_GCODE">
