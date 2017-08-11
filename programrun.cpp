@@ -309,14 +309,22 @@ paramPoint ProgramRun::GetC1MovePoint(paramPoint targetData,paramPoint prevData)
     return targetData;
 }
 
-
-void ProgramRun::WriteToFile(const QList<paramPoint> &posList)
+//save to as file
+void ProgramRun::WriteToFile(const QList<paramPoint> &posList, QString path)
 {
-    qDebug() << "create file" << endl;
+    qDebug() << "create file: " << path << endl;
     play = true;
-    QFile f("move.as");
+
+//Dialog window
+
+    //split path and the file name
+    QStringList fileNameSplit = path.split('.');
+    QStringList fileName = fileNameSplit[0].split('/');
+
+    QFile f(path);
     if (f.open(QIODevice::WriteOnly)) {
-        f.write(".PROGRAM move()\n");
+
+        f.write(".PROGRAM "+fileName[fileName.length()-1].toLocal8Bit() + "()\n");
         while(play)
         {
             if(posList.isEmpty())

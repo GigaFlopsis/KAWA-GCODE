@@ -8,6 +8,7 @@
 #include "QByteArray"
 #include "QDebug"
 #include <QFile>
+#include <QFileDialog>
 
 //Q_DECLARE_METATYPE(QList<paramPoint>)
 
@@ -50,7 +51,7 @@ public slots:
     void SetOrigin();
     void setResporse();
     void LengtCmd(int i);
-    void WriteToFile(const QList<paramPoint> &posList);
+    void WriteToFile(const QList<paramPoint> &posList, QString path);
 private:
     QByteArray GetLMove(paramPoint data,bool realTime);
     QByteArray GetJMove(paramPoint targetData,paramPoint prevData,bool realTime,int num);

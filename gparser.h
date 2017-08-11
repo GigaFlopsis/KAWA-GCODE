@@ -4,7 +4,6 @@
 
 #include "QString"
 #include <QObject>
-#include "port.h"
 #include "QList"
 
 
@@ -38,7 +37,7 @@ signals:
     cmdResponse();
     cmdComment();
     filePos(QList<paramPoint> List);
-    filePosforLoad(QList<paramPoint> List);
+    filePosforLoad(QList<paramPoint> List, QString path);
     fileLengt(int line);
     void CoutList(QString data);
 public slots:
@@ -46,7 +45,7 @@ public slots:
     void ParsingFile(QStringList data);
     void ClearList();
     void SetList();
-    void SetListforFile();
+    void SetListforFile(QString path);
 private:
     paramPoint ParseParam(QStringList list); //set parsing line file
     void ChangeEmpyParam(paramPoint &targetPos, paramPoint currentPos);

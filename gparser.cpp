@@ -2,7 +2,6 @@
 #include "qdebug.h"
 #include <QFile>
 #include <QTextStream>
-#include "port.h"
 #include "QStringList"
 #include <QList>
 
@@ -171,12 +170,12 @@ void GParser::SetList()
     }
 }
 
-void GParser::SetListforFile()
+void GParser::SetListforFile(QString path)
 {
     if(posList.length() != 0)
     {
         qDebug() << "send list\n";
-        emit filePosforLoad(posList);
+        emit filePosforLoad(posList, path);
     }
     else
     {
