@@ -1,4 +1,6 @@
 # G-CODE PARSER FOR ROBOT ARM KAWASAKI
+## [Download exe](https://github.com/GigaFlopsis/KAWA-GCODE/raw/master/exe/KAWA-GCODE.rar)
+
 
 A simple program to run G-CODE in real-time on robots FS03N.
 
