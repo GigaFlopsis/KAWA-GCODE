@@ -1,4 +1,5 @@
 # G-CODE PARSER FOR ROBOT ARM KAWASAKI
+## [Download exe](https://github.com/GigaFlopsis/KAWA-GCODE/raw/Only-The-gcode-parser/exe/KAWA-GCODE.rar)
 
 A simple parser G-CODE to .AS language for robots Kawassaki (tested on FS03N).
 
