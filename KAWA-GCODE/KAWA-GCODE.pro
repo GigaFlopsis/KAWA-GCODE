@@ -12,15 +12,15 @@ TARGET = KAWA-GCODE
 TEMPLATE = app
 
 
-SOURCES += main.cpp\
-        mainwindow.cpp \
-    gparser.cpp \
-    programrun.cpp
+SOURCES += src/main.cpp\
+        src/mainwindow.cpp \
+    src/gparser.cpp \
+    src/programrun.cpp
 
-HEADERS  += mainwindow.h \
-    gparser.h \
-    programrun.h
+HEADERS  += include/mainwindow.h \
+    include/gparser.h \
+    include/programrun.h
 
-FORMS    += mainwindow.ui
+FORMS    += include/mainwindow.ui
 
 
