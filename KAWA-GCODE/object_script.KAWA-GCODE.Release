@@ -1,0 +1,12 @@
+INPUT(
+./release\main.o
+./release\mainwindow.o
+./release\port.o
+./release\gparser.o
+./release\programrun.o
+./release\openfile.o
+./release\moc_mainwindow.o
+./release\moc_port.o
+./release\moc_gparser.o
+./release\moc_programrun.o
+);
