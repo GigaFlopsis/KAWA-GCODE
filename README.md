@@ -8,6 +8,10 @@ A simple parser G-CODE to .AS language for robots Kawassaki (tested on FS03N).
 [![windows](https://image.ibb.co/dwNEyR/program.png)]
 
 
+#### Compilete info
+        Compiler: Mingw32
+        IDE: QT
+
 #### Copyright   
         author: Devitt Dmitry
         year: 25.03.2017
